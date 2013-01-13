@@ -19,7 +19,7 @@ function start_click()
   if (!state.playing)
   {
     state.server.emit('start', {});
-    start_button.innerHTML = "Starting...";
+    start_button.innerHTML = "Starting";
     start_button.className = "yellow button";
   }
 }
