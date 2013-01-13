@@ -37,16 +37,12 @@ function compute_winner()
 
   for (var c in globals.clients)
   {
-    console.log("*" + globals.clients[c].id + ", " + globals.clients[c].score);
     if (globals.clients[c].score > max) max = globals.clients[c].score;  
     if (globals.clients[c].score < min) min = globals.clients[c].score;  
   }
 
-  console.log(globals.clients.length);
-
   for (c in globals.clients)
   {
-    console.log("*" + globals.clients[c].id);
     globals.clients[c].socket.emit('results', {min: min, max: max, my: globals.clients[c].score});
     globals.clients[c].score = 0;
   }
@@ -63,7 +59,6 @@ io.sockets.on('connection', function(socket)
 
   socket.on('disconnect', function() 
   {
-    console.log("disconnect");
     delete globals.clients[socket.id];
   });
 
@@ -73,7 +68,5 @@ io.sockets.on('connection', function(socket)
   });
  
   globals.clients[socket.id] = {id: socket.id, socket: socket, score: 0};
-  globals.clients[0] = "abc";
-  console.log("C" + globals.clients.length);
 });
 

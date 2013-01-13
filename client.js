@@ -54,7 +54,7 @@ window.onload = function()
   globals.server.on('start', function(time)
   {
     globals.server.on('end', end);
-    globals.server.on('result', display_results);
+    globals.server.on('results', display_results);
 
     timer = new Timer(globals.LENGTH - (new Date().getTime() - time), true);
     update();
