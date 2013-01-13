@@ -73,5 +73,6 @@ io.sockets.on('connection', function(socket)
   });
  
   globals.clients[socket.id] = {id: socket.id, socket: socket, score: 0};
+  console.log("C" + globals.clients.length);
 });
 
