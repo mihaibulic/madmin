@@ -47,9 +47,8 @@ input[type=text] {
 }
 
 input[type=button] {
-    margin-top: 20px;
+    margin-top: 10px;
     width: 75px;
-    height: 20px;
 }
 
 select {
