@@ -13,24 +13,25 @@
     <h1>Mad Minute!</h1>  
   </div>
   <div id="main">
-    <input class="red button" type="button" value="Start" onclick="start_click()" />
+    <input id="start_button" class="red button" type="button" value="Start" onclick="start_click()" />
+    <p id="time" syle="visibility:hidden">0:15</p>
     <p id="question">This space is for questions!</p>
     <p id="answer">0</p>
-    <input class="blue button" type="button" value="1" onclick="answer(1)" />
-    <input class="blue button" type="button" value="2" onclick="answer(2)" />
-    <input class="blue button" type="button" value="3" onclick="answer(3)" />
+    <input id="1" class="blue button" type="button" value="1" onclick="answer(1)" />
+    <input id="2" class="blue button" type="button" value="2" onclick="answer(2)" />
+    <input id="3" class="blue button" type="button" value="3" onclick="answer(3)" />
     <br/>
-    <input class="blue button" type="button" value="4" onclick="answer(4)" />
-    <input class="blue button" type="button" value="5" onclick="answer(5)" />
-    <input class="blue button" type="button" value="6" onclick="answer(6)" />
+    <input id="4" class="blue button" type="button" value="4" onclick="answer(4)" />
+    <input id="5" class="blue button" type="button" value="5" onclick="answer(5)" />
+    <input id="6" class="blue button" type="button" value="6" onclick="answer(6)" />
     <br/>
-    <input class="blue button" type="button" value="7" onclick="answer(7)" />
-    <input class="blue button" type="button" value="8" onclick="answer(8)" />
-    <input class="blue button" type="button" value="9" onclick="answer(9)" />
+    <input id="7" class="blue button" type="button" value="7" onclick="answer(7)" />
+    <input id="8" class="blue button" type="button" value="8" onclick="answer(8)" />
+    <input id="9" class="blue button" type="button" value="9" onclick="answer(9)" />
     <br/>
-    <input class="blue button" type="button" value="." onclick="answer('.')" />
-    <input class="blue button" type="button" value="0" onclick="answer(0)" />
-    <input class="green button" type="button" value="Enter" onclick="submit()" />
+    <input id="." class="blue button" type="button" value="." onclick="answer('.')" />
+    <input id="0" class="blue button" type="button" value="0" onclick="answer(0)" />
+    <input id="enter" class="green button" type="button" value="Enter" onclick="submit()" />
   </div>
   <div id="footer">
     <p>&copy; 2012 Mihai</p>

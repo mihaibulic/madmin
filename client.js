@@ -10,6 +10,8 @@ var state =
 function start_click()
 {
   state.server.emit('start', {});
+  document.getElementById("start_button").style.visibility = "hidden";
+  document.getElementById("time").style.visibility = "visible";
 }
 
 function start(time)
@@ -44,6 +46,9 @@ function display_results(data)
      
   if (data.my === data.max) console.log("YOU WON");
   else if (data.my === data.min) console.log("YOU LOST");
+
+  document.getElementById("time").style.visibility = "hidden";
+  document.getElementById("start_button").style.visibility = "visible";
 }
 
 function end()
