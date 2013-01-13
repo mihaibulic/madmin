@@ -23,7 +23,7 @@ function end()
 
 function add_score(id, score)
 {
-  gloabls.scores_received++;
+  globals.scores_received++;
   globals.clients[id].score = score;
 
 
