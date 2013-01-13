@@ -18,7 +18,7 @@ function start(time)
 {
   state.timer = new Timer(state.LENGTH - (new Date().getTime() - time), true);
   state.score = 0;
-  state.interval = setInterval(update, 500);
+  state.interval = setInterval(update, 50);
   update();
 }
 
@@ -29,7 +29,8 @@ function update()
     clearInterval(state.interval);
     state.interval = null;
   }
-  console.log(state.timer.timeLeft());
+
+  document.getElementById("time").value = "0:" + (state.timer.timeLeft/1000);
 }
 
 function answer(ans)
