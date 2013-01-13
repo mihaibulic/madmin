@@ -18,7 +18,7 @@ function start_click()
   if (!state.playing)
   {
     state.server.emit('start', {});
-    document.getElementById("start_button").style.visibility = "hidden";
+    document.getElementById("start_button").value = "Starting...";
   }
 }
 
@@ -37,6 +37,7 @@ function start()
   
   update();
   state.interval = setInterval(update, 500);
+  document.getElementById("start_button").style.visibility = "hidden";
 }
 
 function update()
@@ -132,8 +133,8 @@ function end()
   state.interval = null;
     
   state.time_field.innerHTML = ":0";
-  state.que_field.innerHTML = "Q: ";
-  state.ans_field.innerHTML = "A: ";
+  state.que_field.innerHTML = "please wait";
+  state.ans_field.innerHTML = "...";
   
   state.server.emit('score', state.score);
 }
