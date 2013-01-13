@@ -1,7 +1,7 @@
 var io = require('socket.io').listen(1338);
 io.set('log level', 1);
 
-var globals = 
+var state = 
 {
   LENGTH: 2000,
   scores_received: 0,
@@ -11,7 +11,7 @@ var globals =
 function start()
 {
   var time = new Date().getTime();
-  setTimeout(end, globals.LENGTH);
+  setTimeout(end, state.LENGTH);
   
   io.sockets.emit('start', time);
 }
@@ -23,10 +23,10 @@ function end()
 
 function add_score(id, score)
 {
-  globals.scores_received++;
-  globals.clients[id].score = score;
+  state.scores_received++;
+  state.clients[id].score = score;
 
-  if (globals.scores_received >= globals.clients.length)
+  if (state.scores_received >= state.clients.length)
     compute_winner();
 }
 
@@ -35,31 +35,28 @@ function compute_winner()
   var max = 0;
   var min = 9999;
 
-  for (var c in globals.clients)
+  for (var c in state.clients)
   {
-    if (globals.clients[c].score > max) max = globals.clients[c].score;  
-    if (globals.clients[c].score < min) min = globals.clients[c].score;  
+    if (state.clients[c].score > max) max = state.clients[c].score;  
+    if (state.clients[c].score < min) min = state.clients[c].score;  
   }
 
-  for (c in globals.clients)
+  for (c in state.clients)
   {
-    globals.clients[c].socket.emit('results', {min: min, max: max, my: globals.clients[c].score});
-    globals.clients[c].score = 0;
+    state.clients[c].socket.emit('results', {min: min, max: max, my: state.clients[c].score});
+    state.clients[c].score = 0;
   }
 
-  globals.scores_receives = 0;
+  state.scores_receives = 0;
 }
 
 io.sockets.on('connection', function(socket) 
 {
-  socket.on('start', function()
-  { 
-    start();
-  });  
+  socket.on('start', start);  
 
   socket.on('disconnect', function() 
   {
-    delete globals.clients[socket.id];
+    delete state.clients[socket.id];
   });
 
   socket.on('score', function(score)
@@ -67,6 +64,6 @@ io.sockets.on('connection', function(socket)
     add_score(socket.id, score);
   });
  
-  globals.clients[socket.id] = {id: socket.id, socket: socket, score: 0};
+  state.clients[socket.id] = {id: socket.id, socket: socket, score: 0};
 });
 

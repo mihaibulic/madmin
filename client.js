@@ -1,4 +1,4 @@
-var globals = 
+var state = 
 {
   LENGTH: 2000,
   interval: null,
@@ -9,23 +9,23 @@ var globals =
 
 function start()
 {
-  globals.server.emit('start', {});
+  state.server.emit('start', {});
 }
 
 function update()
 {
-  if(timer.isDone())
+  if(state.timer.isDone())
   {
-    clearInterval(globals.interval);
-    globals.interval = null;
+    clearInterval(state.interval);
+    state.interval = null;
   }
-  console.log(timer.timeLeft());
+  console.log(state.timer.timeLeft());
 }
 
 function answer(ans)
 {
-  globals.score += ans;
-  console.log("Score: " + globals.score);
+  state.score += ans;
+  console.log("Score: " + state.score);
 }
 
 function display_results(data)
@@ -40,26 +40,26 @@ function display_results(data)
 
 function end()
 {
+  clearInterval(state.interval);
+  state.interval = null;
+    
   console.log("END");
-    
-  clearInterval(globals.interval);
-  globals.interval = null;
-    
-  globals.server.emit('score', globals.score);
-  globals.score = 0;
+  
+  state.server.emit('score', state.score);
 }
 
 window.onload = function()
 {
-  globals.server = io.connect('ws://madmin.misquares.com');
-  globals.server.on('start', function(time)
+  state.server = io.connect('ws://madmin.misquares.com');
+  state.server.on('start', function(time)
   {
-    globals.server.on('end', end);
-    globals.server.on('results', display_results);
+    state.server.on('end', end);
+    state.server.on('results', display_results);
 
-    timer = new Timer(globals.LENGTH - (new Date().getTime() - time), true);
+    state.score = 0;
+    state.timer = new Timer(state.LENGTH - (new Date().getTime() - time), true);
     update();
-    globals.interval = setInterval(update, 500);
+    state.interval = setInterval(update, 500);
   });
 };
 
