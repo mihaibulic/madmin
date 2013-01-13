@@ -37,6 +37,8 @@ function start()
 
   start_button.innerHTML = "Go!";
   start_button.className = "green button";
+
+  state.server.emit('heart', {});
 }
 
 function update()

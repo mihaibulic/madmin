@@ -10,13 +10,8 @@ var state =
 
 function start()
 {
-//  setTimeout(end, state.LENGTH);
+  clients = [];
   io.sockets.emit('start',{});
-}
-
-function end()
-{
-  io.sockets.emit('end', {});
 }
 
 function add_score(id, score)
@@ -53,7 +48,6 @@ io.sockets.on('connection', function(socket)
   socket.on('start', start);  
   socket.on('disconnect', function() { delete state.clients[socket.id]; });
   socket.on('score', function(score) { add_score(socket.id, score); });
- 
-  state.clients[socket.id] = {id: socket.id, socket: socket, score: 0};
+  socket.on('heart', function() { state.clients[socket.id] = {id: socket.id, socket: socket, score: 0}; });
 });
 
