@@ -41,6 +41,7 @@ function compute_winner()
 
   for (c in state.clients)
   {
+    console.log("EMIT " + max);
     state.clients[c].socket.emit('results', max);
     state.clients[c].score = 0;
   }
