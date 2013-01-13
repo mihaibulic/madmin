@@ -42,7 +42,7 @@ function compute_winner()
     if (c.score < min) min = c.score;  
   }
 
-  console.log(globals.scores_received);
+  console.log(globals.clients.length);
 
   for (c in globals.clients)
   {
