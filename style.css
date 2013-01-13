@@ -11,9 +11,12 @@ html, body {
     -ms-user-select: none;
 }
 
+p, h1 {
+    color: #DBDBDB;
+}
+
 h1 {
     text-align: center;
-    color: #DBDBDB;
     font-size: 50px;
 }
 
