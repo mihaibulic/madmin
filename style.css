@@ -21,7 +21,7 @@ h1 {
     font-size: 150px;
 }
 
-a {
+.button {
     margin-left: 100px;
     display: block;
     margin: 30px;
