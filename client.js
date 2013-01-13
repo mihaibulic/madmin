@@ -27,19 +27,16 @@ function start_click()
 function start()
 {
   state.playing = true;
-  
+  state.timer = new Timer(state.LENGTH, true);
+  state.score = 0;
   state.time_field.innerHTML = ":" + Math.round(state.LENGTH/1000);
-  state.que_field.innerHTML = "Q: ";
-  state.ans_field.innerHTML = "A: ";
   
   generate_problem();
   
-  state.timer = new Timer(state.LENGTH, true);
-  state.score = 0;
-  
-  update();
   state.interval = setInterval(update, 500);
-  start_button.style.visibility = "hidden";
+
+  start_button.innerHTML = "Go!";
+  start_button.className = "green button";
 }
 
 function update()
@@ -79,10 +76,6 @@ function submit()
   if (state.playing)
   {
     state.score += (state.my_answer === state.act_answer) ? 1 : -1;
-
-    state.ans_field.innerHTML = "A: "; 
-    state.my_answer = 0;
-
     generate_problem();
   }
 }
@@ -118,6 +111,8 @@ function generate_problem()
     state.que_field.innerHTML = "Q: " + a + " x " + b;
     state.act_answer = a * b;
   }
+  state.ans_field.innerHTML = "A: ";
+  state.my_answer = 0;
 }
 
 function display_results(max)
