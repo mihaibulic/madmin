@@ -7,7 +7,7 @@ var Timer = function(millis, opt_start) {
   this.originalLength = this.length = millis;
 
   if (opt_start !== undefined && opt_start)
-    start();
+    this.start();
 };
 
 /**
