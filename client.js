@@ -51,7 +51,7 @@ function update()
     }
     else
     {
-      state.ans_field.innerHTML = state.my_answer;
+      state.ans_field.innerHTML = "A: " + state.my_answer;
       state.time_field.innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
     }
   }
@@ -62,7 +62,6 @@ function clear_answer()
   if (state.playing)
   {
     state.my_answer = 0; 
-    state.ans_field.innerHTML = "A: ";
   }
 }
 
@@ -114,7 +113,6 @@ function generate_problem()
     state.que_field.innerHTML = "Q: " + a + " x " + b;
     state.act_answer = a * b;
   }
-  state.ans_field.innerHTML = "A: ";
   state.my_answer = 0;
 }
 
