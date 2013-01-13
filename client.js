@@ -28,6 +28,16 @@ function answer(ans)
   console.log("Score: " + globals.score);
 }
 
+function display_results(data)
+{
+  console.log("winner: " + data.max);
+  console.log("my score: " + data.my);
+  console.log("loser: " + data.min);
+     
+  if (data.my === data.max) console.log("YOU WON");
+  else if (data.my === data.min) console.log("YOU LOST");
+}
+
 function end()
 {
   console.log("END");
@@ -38,27 +48,18 @@ function end()
   globals.server.emit('score', globals.score);
 }
 
-globals.server = io.connect('ws://madmin.misquares.com');
-globals.server.on('start', function(time)
+window.onload = function()
 {
-  globals.server.on('end', function()
+  globals.server = io.connect('ws://madmin.misquares.com');
+  globals.server.on('start', function(time)
   {
-    end();
-  });
+    globals.server.on('end', end);
+    globals.server.on('result', display_results);
 
-  globals.server.on('result', function(data)
-  {
-    console.log("winner: " + data.max);
-    console.log("my score: " + data.my);
-    console.log("loser: " + data.min);
-    
-    if (data.my === data.max) console.log("YOU WON");
-    else if (data.my === data.min) console.log("YOU LOST");
+    timer = new Timer(globals.LENGTH - (new Date().getTime() - time));
+    update();
+    globals.interval.setInterval(update, 500);
   });
-
-  timer = new Timer(globals.LENGTH - (new Date().getTime() - time));
-  update();
-  globals.interval.setInterval(update, 500);
-});
+};
 
 
