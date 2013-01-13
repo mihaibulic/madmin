@@ -2,9 +2,6 @@
 <html>
 <head>
   <title> MAD MINUTE!</title>
-  <script type="text/javascript" src="Timer.js"></script>
-  <script type="text/javascript" src="client.js"></script>
-  <script type="text/javascript" src="socket.io.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <%@ include file="/support/head.jsp"%>
 </head>
@@ -35,5 +32,9 @@
   </div>
   <div id="footer">
     <p>&copy; 2012 Mihai</p>
+  
+  <script type="text/javascript" src="Timer.js"></script>
+  <script type="text/javascript" src="client.js"></script>
+  <script type="text/javascript" src="socket.io.js"></script>
 </body>
 </html>
