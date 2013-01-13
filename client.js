@@ -20,10 +20,12 @@ function start(time)
 {
   state.timer = new Timer(state.LENGTH, true);
   state.score = 0;
+  state.interval = setInterval(update, 500);
   
-  state.interval = setInterval(update, 50);
+  document.getElementById("time").innerHTML = ":" + state.LENGTH;
+  document.getElementById("answer").innerHTML = "-";
+  
   update();
-  
   generate_problem();
 }
 
