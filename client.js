@@ -69,7 +69,7 @@ function add_to_answer(ans)
 {
   if (state.playing)
   {
-    state.ans_field.appendChild(ans);
+    state.ans_field.appendChild(document.createTextNode(ans));
     state.my_answer = Math.floor(state.my_answer*10 + ans);
   }
 }
