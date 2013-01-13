@@ -37,18 +37,18 @@ function compute_winner()
 
   for (var c in globals.clients)
   {
-    console.log("*" + c.id + ", " + c.score);
-    if (c.score > max) max = c.score;  
-    if (c.score < min) min = c.score;  
+    console.log("*" + globals.clients[c].id + ", " + globals.clients[c].score);
+    if (globals.clients[c].score > max) max = globals.clients[c].score;  
+    if (globals.clients[c].score < min) min = globals.clients[c].score;  
   }
 
   console.log(globals.clients.length);
 
   for (c in globals.clients)
   {
-    console.log("*" + c.id);
-    cl.socket.emit('results', {min: min, max: max, my: c.score});
-    cl.score = 0;
+    console.log("*" + globals.clients[c].id);
+    globals.clients[c].socket.emit('results', {min: min, max: max, my: globals.clients[c].score});
+    globals.clients[c].score = 0;
   }
 
   globals.scores_receives = 0;
