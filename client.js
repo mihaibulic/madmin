@@ -50,7 +50,7 @@ function end()
 
 window.onload = function()
 {
-  globals.server = io.connect('ws://madmin.misquares.com');
+  globals.server = io.connect('ws://admin.misquares.com');
   globals.server.on('start', function(time)
   {
     globals.server.on('end', end);
