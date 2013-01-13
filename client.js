@@ -27,8 +27,8 @@ function start(time)
   state.playing = true;
   
   state.time_field.innerHTML = ":" + state.LENGTH;
-  state.que_field.innerHTML = "&gt;";
-  state.ans_field.innerHTML = "&gt;";
+  state.que_field.innerHTML = "Q: ";
+  state.ans_field.innerHTML = "A: ";
   
   generate_problem();
   
@@ -59,7 +59,7 @@ function answer(ans)
   {
     if (ans === "x")
     {
-      state.ans_field.innerHTML = "&gt;";
+      state.ans_field.innerHTML = "A: ";
       state.my_answer = 0; 
     }
     else
@@ -77,7 +77,7 @@ function submit()
     state.score += (state.my_answer === state.act_answer) ? 1 : -1;
     console.log(state.score);
 
-    state.ans_field.innerHTML = "&gt;"; 
+    state.ans_field.innerHTML = "A: "; 
     state.my_answer = 0;
 
     generate_problem();
@@ -96,7 +96,7 @@ function generate_problem()
   {
     a = Math.round(Math.random()*100);
     b = Math.round(Math.random()*100);
-    state.que_field.innerHTML = a + " + " + b;
+    state.que_field.innerHTML = "Q: " + a + " + " + b;
     state.act_answer = a + b; 
   }
   else if (t === 1)
@@ -105,14 +105,14 @@ function generate_problem()
     b = Math.round(Math.random()*100);
     first = Math.max(a,b);
     sec = Math.min(a,b); 
-    state.que_field.innerHTML = first + " - " + sec;
+    state.que_field.innerHTML = "Q: " + first + " - " + sec;
     state.act_answer = first - sec;
   }
   else 
   {
     a = Math.round(Math.random()*13);
     b = Math.round(Math.random()*13);
-    state.que_field.innerHTML = a + " x " + b;
+    state.que_field.innerHTML = "Q: " + a + " x " + b;
     state.act_answer = a * b;
   }
 }
