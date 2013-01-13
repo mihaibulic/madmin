@@ -13,7 +13,6 @@ function start_click()
 {
   state.server.emit('start', {});
   document.getElementById("start_button").style.visibility = "hidden";
-  document.getElementById("time").style.visibility = "visible";
 }
 
 function start(time)
@@ -104,7 +103,6 @@ function display_results(data)
   document.getElementById("question").innerHTML = (data.my === data.max) ? "YOU WON!" : "you lost :("; 
   document.getElementById("answer").innerHTML = "score: " + data.my;
 
-  document.getElementById("time").style.visibility = "hidden";
   document.getElementById("start_button").style.visibility = "visible";
 }
 
