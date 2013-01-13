@@ -1,5 +1,3 @@
-module.exports.Timer = Timer;
-
 /**
  * A timer is able to let you know when a certain amount of time has elapsed
  * @param {Number} millis - length of this timer, in milliseconds

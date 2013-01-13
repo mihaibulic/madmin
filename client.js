@@ -1,5 +1,3 @@
-require('./Timer');
-
 var globals = 
 {
   LENGTH: 15000,
