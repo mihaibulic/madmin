@@ -41,11 +41,13 @@ function compute_winner()
     if (c.score < min) min = c.score;  
   }
 
-  for (c in globals.clients)
+  console.log(globals.scores_received);
+
+  for (var cl in globals.clients)
   {
-    console.log(c.score + " " + c.id);
-    c.socket.emit('results', {min: min, max: max, my: c.score});
-    c.score = 0;
+    console.log(cl.score + " " + cl.id);
+    cl.socket.emit('results', {min: min, max: max, my: c.score});
+    cl.score = 0;
   }
 
   globals.scores_receives = 0;
