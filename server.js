@@ -42,7 +42,7 @@ function compute_winner()
     if (c.score < min) min = c.score;  
   }
        
-  for (c in globals.clients)
+  for (var c in globals.clients)
   {
     c.socket.emit('results', {min: min, max: max, my: c.score});
     c.score = 0;
