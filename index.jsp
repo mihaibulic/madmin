@@ -26,7 +26,7 @@
     <a id="8" class="blue button" onclick="answer(8)">8</a>
     <a id="9" class="blue button" onclick="answer(9)">9</a>
     <br/>
-    <a id="x" class="red button" onclick="answer('x')">x</a>
+    <a id="x" class="red button" onclick="clear()">x</a>
     <a id="0" class="blue button" onclick="answer(0)">0</a>
     <a id="enter" class="green button" onclick="submit()">Enter</a>
   </div>

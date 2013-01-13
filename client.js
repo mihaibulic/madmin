@@ -56,20 +56,21 @@ function update()
   }
 }
 
+function clear()
+{
+  if (state.playing)
+  {
+    state.my_answer = 0; 
+    state.ans_field.innerHTML = "A: ";
+  }
+}
+
 function answer(ans)
 {
   if (state.playing)
   {
-    if (ans === "x")
-    {
-      state.ans_field.innerHTML = "A: ";
-      state.my_answer = 0; 
-    }
-    else
-    {
-      state.ans_field.innerHTML += ans; 
-      state.my_answer = Math.floor(state.my_answer*10 + ans);
-    }
+    state.ans_field.innerHTML += ans; 
+    state.my_answer = Math.floor(state.my_answer*10 + ans);
   }
 }
 
