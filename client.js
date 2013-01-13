@@ -131,7 +131,6 @@ function display_results(max)
 
   start_button.innerHTML = "Start";
   start_button.className = "red button";
-  start_button.style.visibility = "visible";
 }
 
 function end()

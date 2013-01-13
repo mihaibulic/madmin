@@ -12,8 +12,8 @@
   <div id="main">
     <a id="start_button" class="red button" onclick="start_click()">Start</a>
     <p id="time">:0</p>
-    <p id="question">Q: </p>
-    <p id="answer">A: </p>
+    <p id="question">Hit Start!</p>
+    <p id="answer">prepare for social math</p>
     <a id="1" class="blue button" onclick="answer(1)">1</a>
     <a id="2" class="blue button" onclick="answer(2)">2</a>
     <a id="3" class="blue button" onclick="answer(3)">3</a>
