@@ -7,9 +7,17 @@ var state =
   server: null
 };
 
-function start()
+function start_click()
 {
   state.server.emit('start', {});
+}
+
+function start(time)
+{
+  state.timer = new Timer(state.LENGTH - (new Date().getTime() - time), true);
+  state.score = 0;
+  state.interval = setInterval(update, 500);
+  update();
 }
 
 function update()
@@ -51,16 +59,9 @@ function end()
 window.onload = function()
 {
   state.server = io.connect('ws://madmin.misquares.com');
-  state.server.on('start', function(time)
-  {
-    state.server.on('end', end);
-    state.server.on('results', display_results);
-
-    state.timer = new Timer(state.LENGTH - (new Date().getTime() - time), true);
-    state.score = 0;
-    state.interval = setInterval(update, 500);
-    update();
-  });
+  state.server.on('start', start);
+  state.server.on('end', end);
+  state.server.on('results', display_results);
 };
 
 

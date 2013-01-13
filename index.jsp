@@ -14,7 +14,7 @@
   </div>
   <div id="main">
     <div id="login">
-      <input type="button" value="Start" onclick="start()" />
+      <input type="button" value="Start" onclick="start_click()" />
       <input type="button" value="Right" onclick="answer(1)" />
       <input type="button" value="Wrong" onclick="answer(-1)" />
       <input type="text" id="answer" style="display:hidden"/>
