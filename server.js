@@ -32,7 +32,7 @@ function add_score(id, score)
 
 function compute_winner()
 {
-  console.log("users: " + state.clients.length);
+  console.log("users: " + state.clients.size());
 
   var max = 0;
   var min = 9999;
