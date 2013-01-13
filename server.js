@@ -46,8 +46,8 @@ io.sockets.on('connection', function(socket)
 {
   console.log('connected');
   socket.on('start', start);  
-  socket.on('disconnect', function() { delete state.clients[socket.id]; });
-  socket.on('score', function(score) { add_score(socket.id, score); });
   socket.on('heart', function() { state.clients[socket.id] = {id: socket.id, socket: socket, score: 0}; });
+  socket.on('score', function(score) { add_score(socket.id, score); });
+  socket.on('disconnect', function() { delete state.clients[socket.id]; });
 });
 

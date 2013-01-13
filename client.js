@@ -119,7 +119,14 @@ function generate_problem()
 
 function display_results(max)
 {
-  state.que_field.innerHTML = (state.score === max) ? "YOU WON!" : "you lost :("; 
+  if (state.score === max)
+  {
+    state.que_field.innerHTML = "YOU WON!"; 
+  }
+  else
+  {
+    state.que_field.innerHTML = "you lost :("; 
+  }
   state.ans_field.innerHTML = "score: " + state.score;
 
   start_button.innerHTML = "Start";
