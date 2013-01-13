@@ -4,6 +4,8 @@ var state =
   interval: null,
   timer: null,
   score: 0,
+  my_answer: 0,
+  act_answer: 0,
   server: null
 };
 
@@ -34,6 +36,20 @@ function update()
 }
 
 function answer(ans)
+{
+  if (ans === "x")
+  {
+    state.my_answer = Math.floor(my_answer/10);
+  }
+  else
+  {
+    state.my_answer += state.my_answer*10 + ans;
+  }
+  
+  document.getElementById("answer").innerHTML = state.my_answer; 
+}
+
+function submit()
 {
   state.score += ans;
   console.log("Score: " + state.score);

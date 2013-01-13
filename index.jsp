@@ -16,7 +16,7 @@
     <input id="start_button" class="red button" type="button" value="Start" onclick="start_click()" />
     <p id="time" style="visibility: hidden">:0</p>
     <p id="question">This space is for questions!</p>
-    <p id="answer">0</p>
+    <p id="answer"></p>
     <input id="1" class="blue button" type="button" value="1" onclick="answer(1)" />
     <input id="2" class="blue button" type="button" value="2" onclick="answer(2)" />
     <input id="3" class="blue button" type="button" value="3" onclick="answer(3)" />
@@ -29,7 +29,7 @@
     <input id="8" class="blue button" type="button" value="8" onclick="answer(8)" />
     <input id="9" class="blue button" type="button" value="9" onclick="answer(9)" />
     <br/>
-    <input id="." class="blue button" type="button" value="." onclick="answer('.')" />
+    <input id="x" class="blue button" type="button" value="x" onclick="answer('.')" />
     <input id="0" class="blue button" type="button" value="0" onclick="answer(0)" />
     <input id="enter" class="green button" type="button" value="Enter" onclick="submit()" />
   </div>
