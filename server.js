@@ -26,7 +26,6 @@ function add_score(id, score)
   globals.scores_received++;
   globals.clients[id].score = score;
 
-
   if (globals.scores_received >= globals.clients.length)
     compute_winner();
 }
@@ -41,9 +40,13 @@ function compute_winner()
     if (c.score > max) max = c.score;  
     if (c.score < min) min = c.score;  
   }
+
+  console.log("max: " + max);
+  console.log("min: " + min);
        
-  for (var c in globals.clients)
+  for (c in globals.clients)
   {
+    console.log(c.score + " " + c.id);
     c.socket.emit('results', {min: min, max: max, my: c.score});
     c.score = 0;
   }
