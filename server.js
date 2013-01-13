@@ -41,9 +41,6 @@ function compute_winner()
     if (c.score < min) min = c.score;  
   }
 
-  console.log("max: " + max);
-  console.log("min: " + min);
-       
   for (c in globals.clients)
   {
     console.log(c.score + " " + c.id);
@@ -72,5 +69,6 @@ io.sockets.on('connection', function(socket)
   });
  
   globals.clients[socket.id] = {id: socket.id, socket: socket, score: 0};
+  console.log(socket.id + "\t" + globals.clients[socket.id].score);
 });
 
