@@ -56,7 +56,7 @@ window.onload = function()
     globals.server.on('end', end);
     globals.server.on('result', display_results);
 
-    timer = new Timer(globals.LENGTH - (new Date().getTime() - time));
+    timer = new Timer(globals.LENGTH - (new Date().getTime() - time), true);
     update();
     globals.interval = setInterval(update, 500);
   });
