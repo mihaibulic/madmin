@@ -5,9 +5,12 @@
   <script type="text/javascript" src="client.js"></script>
   <script type="text/javascript" src="socket.io.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
+  <%@ include file="/support/head.jsp"%>
 </head>
 <body>
-  <div id="logo"></div>
+  <div id="logo">
+    <h1>Mad Minute!</h1>  
+  </div>
   <div id="main">
     <div id="login">
       <input type="button" value="Start" onclick="start()" />

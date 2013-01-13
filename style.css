@@ -2,9 +2,9 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #fff;
-    color: #aaa;
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 10px;
+    color: #222;
+    font-family: 'QuicksandBook', Arial, sans-serif;
+    font-size: 15px;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -12,10 +12,7 @@ html, body {
 }
 
 h1 {
-    font-size: 32px;
-    margin-left: 50px;
-    margin-top: 185px;
-    margin-bottom: 0;
+    font-size: 50px;
 }
 
 h2 {
@@ -52,18 +49,6 @@ input[type=button] {
 
 select {
     margin-left: 50px;
-}
-
-#logo {
-    width: 100%;
-    height: 90px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    background-image: url('layout/logo.png');
-    background-repeat: no-repeat;
-    background-position: center 22px;
 }
 
 #main {
