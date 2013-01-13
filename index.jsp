@@ -27,8 +27,9 @@
     <input class="blue button" type="button" value="7" onclick="answer(7)" />
     <input class="blue button" type="button" value="8" onclick="answer(8)" />
     <input class="blue button" type="button" value="9" onclick="answer(9)" />
-    <input class="blue button" type="button" value="0" onclick="answer(0)" />
     <br/>
+    <input class="blue button" type="button" value="." onclick="answer('.')" />
+    <input class="blue button" type="button" value="0" onclick="answer(0)" />
     <input class="green button" type="button" value="Enter" onclick="submit()" />
   </div>
   <div id="footer">
