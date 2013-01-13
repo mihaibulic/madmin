@@ -4,21 +4,16 @@ html, body {
     background-color: #242424;
     color: #DBDBDB;
     font-family: 'QuicksandBook', Arial, sans-serif;
-    font-size: 45px;
+    font-size: 40px;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
 
-p, h1 {
-    font-size: 45px;
-    color: #DBDBDB;
-}
-
 h1 {
     text-align: center;
-    font-size: 150px;
+    font-size: 100px;
 }
 
 .button {
