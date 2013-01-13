@@ -33,7 +33,7 @@ function start()
   
   generate_problem();
   
-  state.interval = setInterval(update, 500);
+  state.interval = setInterval(update, 200);
 
   start_button.innerHTML = "Go!";
   start_button.className = "green button";
@@ -51,6 +51,7 @@ function update()
     }
     else
     {
+      state.ans_field.innerHTML = state.my_answer;
       state.time_field.innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
     }
   }
@@ -70,7 +71,6 @@ function add_to_answer(ans)
   if (state.playing)
   {
     state.my_answer = Math.floor(state.my_answer*10 + ans);
-    state.ans_field.innerHTML = state.my_answer;
   }
 }
 
