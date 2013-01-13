@@ -4,7 +4,7 @@ html, body {
     background-color: #242424;
     color: #DBDBDB;
     font-family: 'QuicksandBook', Arial, sans-serif;
-    font-size: 15px;
+    font-size: 30px;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -17,17 +17,17 @@ p, h1 {
 
 h1 {
     text-align: center;
-    font-size: 50px;
+    font-size: 100px;
 }
 
 input {
-    margin-left: 50px;
+    margin-left: 100px;
     display: block;
 }
 
 input[type=button] {
-    margin-top: 10px;
-    width: 75px;
+    margin-top: 20px;
+    width: 150px;
 }
 
 #main {
