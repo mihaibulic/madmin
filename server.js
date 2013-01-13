@@ -5,7 +5,7 @@ var globals =
 {
   LENGTH: 2000,
   scores_received: 0,
-  clients: []
+  clients: {} 
 };
 
 function start()
