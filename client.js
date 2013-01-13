@@ -39,11 +39,11 @@ function answer(ans)
 {
   if (ans === "x")
   {
-    state.my_answer = (state.my_answer/10);
+    state.my_answer = Math.floor(state.my_answer/10);
   }
   else
   {
-    state.my_answer = state.my_answer*10 + ans;
+    state.my_answer = Math.floor(state.my_answer*10 + ans);
   }
   
   document.getElementById("answer").innerHTML = state.my_answer; 
