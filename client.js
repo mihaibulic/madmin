@@ -50,17 +50,16 @@ function end()
 
 window.onload = function()
 {
-  console.log("loaded");
   state.server = io.connect('ws://madmin.misquares.com');
   state.server.on('start', function(time)
   {
     state.server.on('end', end);
     state.server.on('results', display_results);
 
-    state.score = 0;
     state.timer = new Timer(state.LENGTH - (new Date().getTime() - time), true);
-    update();
+    state.score = 0;
     state.interval = setInterval(update, 500);
+    update();
   });
 };
 
