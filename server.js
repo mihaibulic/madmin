@@ -52,13 +52,13 @@ function compute_winner()
 
 io.sockets.on('connection', function(socket) 
 {
-  socket.on('start', start);  
+  console.log("new connection: " + socket.id);
 
+  socket.on('start', start);  
   socket.on('disconnect', function() 
   {
     delete state.clients[socket.id];
   });
-
   socket.on('score', function(score)
   {
     add_score(socket.id, score);
