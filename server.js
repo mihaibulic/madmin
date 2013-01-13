@@ -26,12 +26,17 @@ function add_score(id, score)
   state.scores_received++;
   state.clients[id].score = score;
 
+  console.log("scores rec");
   if (state.scores_received >= state.clients.length)
-    compute_winner();
+  {
+    console.log("computing winner");
+    compute_winner(); 
+  }
 }
 
 function compute_winner()
 {
+  console.log("cw");
   var max = -999;
 
   for (var c in state.clients)
@@ -39,9 +44,9 @@ function compute_winner()
     if (state.clients[c].score > max) max = state.clients[c].score;  
   }
 
+  console.log("emitting res for " + state.clients.length);
   for (c in state.clients)
   {
-    console.log("EMIT " + max);
     state.clients[c].socket.emit('results', max);
     state.clients[c].score = 0;
   }
