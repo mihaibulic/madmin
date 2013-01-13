@@ -46,6 +46,7 @@ function end()
   globals.interval = null;
     
   globals.server.emit('score', globals.score);
+  globals.score = 0;
 }
 
 window.onload = function()
