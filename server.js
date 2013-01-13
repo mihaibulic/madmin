@@ -3,7 +3,7 @@ io.set('log level', 1);
 
 var state = 
 {
-  LENGTH: 2000,
+  LENGTH: 15000,
   scores_received: 0,
   clients: [] 
 };

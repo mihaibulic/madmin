@@ -1,6 +1,6 @@
 var state = 
 {
-  LENGTH: 2000,
+  LENGTH: 15000,
   interval: null,
   timer: null,
   score: 0,
