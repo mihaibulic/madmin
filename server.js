@@ -1,5 +1,6 @@
 var io = require('socket.io').listen(1338);
 io.set('log level', 1);
+io.set('origins', '*:*');
 
 var globals = 
 {
