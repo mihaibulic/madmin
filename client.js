@@ -75,7 +75,6 @@ function submit()
   if (state.playing)
   {
     state.score += (state.my_answer === state.act_answer) ? 1 : -1;
-    console.log(state.score);
 
     state.ans_field.innerHTML = "A: "; 
     state.my_answer = 0;
@@ -119,7 +118,7 @@ function generate_problem()
 
 function display_results(max)
 {
-  console.log(max);
+  console.log("MAX" + max);
   state.que_field.innerHTML = (state.score === max) ? "YOU WON!" : "you lost :("; 
   state.ans_field.innerHTML = "score: " + state.score;
 
@@ -131,8 +130,6 @@ function end()
   state.playing = false;
   clearInterval(state.interval);
   state.interval = null;
-    
-  console.log("END");
   
   state.server.emit('score', state.score);
 }
