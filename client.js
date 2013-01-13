@@ -19,6 +19,7 @@ function start_click()
   {
     state.server.emit('start', {});
     document.getElementById("start_button").value = "Starting...";
+    document.getElementById("start_button").className = "yellow button";
   }
 }
 
