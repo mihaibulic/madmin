@@ -22,20 +22,17 @@ function start_click()
   }
 }
 
-function start(start_time)
+function start()
 {
   state.playing = true;
   
-  alert("time: " + time + ", diff: " + ((new Date()).getTime()-start_time));
-
-  var time = state.LENGTH - ((new Date()).getTime() - start_time);
-  state.time_field.innerHTML = ":" + Math.round(time/1000);
+  state.time_field.innerHTML = ":" + Math.round(state.LENGTH/1000);
   state.que_field.innerHTML = "Q: ";
   state.ans_field.innerHTML = "A: ";
   
   generate_problem();
   
-  state.timer = new Timer(time, true);
+  state.timer = new Timer(state.LENGTH, true);
   state.score = 0;
   
   update();
@@ -48,12 +45,12 @@ function update()
   {
     if (state.timer.isDone())
     {
-      clearInterval(state.interval);
-      state.interval = null;
-      state.playing = false;
+      end();
     }
-
-    state.time_field.innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
+    else
+    {
+      state.time_field.innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
+    }
   }
 }
 
@@ -133,6 +130,7 @@ function end()
   state.playing = false;
   clearInterval(state.interval);
   state.interval = null;
+  state.time_field.innerHTML = ":0";
   
   state.server.emit('score', state.score);
 }

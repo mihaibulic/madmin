@@ -10,10 +10,8 @@ var state =
 
 function start()
 {
-  var time = new Date().getTime();
-  setTimeout(end, state.LENGTH);
-  
-  io.sockets.emit('start', time);
+//  setTimeout(end, state.LENGTH);
+  io.sockets.emit('start',{});
 }
 
 function end()
