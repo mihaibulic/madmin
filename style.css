@@ -20,30 +20,9 @@ h1 {
     font-size: 50px;
 }
 
-h2 {
-    font-size: 32px;
-    text-align: center;
-    margin-top: 185px;
-    height: 75px;
-    background-image: url('layout/loading.gif');
-    background-repeat: no-repeat;
-    background-position: center bottom;
-}
-
-h3 {
-    font-size: 32px;
-    margin-left: 50px;
-    margin-top: 30px;
-    margin-bottom: 0;
-}
-
 input {
     margin-left: 50px;
     display: block;
-}
-
-input[type=text] {
-    width: 500px;
 }
 
 input[type=button] {
@@ -51,28 +30,8 @@ input[type=button] {
     width: 75px;
 }
 
-select {
-    margin-left: 50px;
-}
-
-#loading {
-    display: none;
-}
-
-#game {
-    display: none;
-}
-
-#map {
-    display: none;
-}
-
-#cnv {
-    cursor: crosshair;
-}
-
-#renderer {
-    display: none;
+#main {
+    text-align: center;
 }
 
 #footer {
