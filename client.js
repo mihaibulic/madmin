@@ -25,16 +25,18 @@ function start_click()
 function start(time)
 {
   state.playing = true;
-  state.timer = new Timer(state.LENGTH, true);
-  state.score = 0;
-  state.interval = setInterval(update, 500);
   
   state.time_field.innerHTML = ":" + state.LENGTH;
   state.que_field.innerHTML = "";
   state.ans_field.innerHTML = "";
   
-  update();
   generate_problem();
+  
+  state.timer = new Timer(state.LENGTH, true);
+  state.score = 0;
+  
+  update();
+  state.interval = setInterval(update, 500);
 }
 
 function update()
