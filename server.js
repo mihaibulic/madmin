@@ -1,4 +1,4 @@
-var io = require('socket.io').listen(1338);
+var io = require('socket.io').listen(1338, {origins: '*:*'});
 io.set('log level', 1);
 
 var globals = 
