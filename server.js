@@ -42,15 +42,10 @@ function compute_winner()
   for (var c in state.clients)
   {
     if (state.clients[c].score > max) max = state.clients[c].score;  
-  }
-
-  console.log("emitting res for " + state.clients.length);
-  for (c in state.clients)
-  {
-    state.clients[c].socket.emit('results', max);
     state.clients[c].score = 0;
   }
 
+  io.sockets.emit('results', max);  
   state.scores_received = 0;
 }
 

@@ -1,5 +1,5 @@
 info: socket.io started
-EMIT 2
-EMIT 2
-EMIT 0
-EMIT 0
+scores rec
+computing winner
+cw
+emitting res for 0
