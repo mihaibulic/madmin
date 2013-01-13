@@ -3,7 +3,7 @@ io.set('log level', 1);
 
 var globals = 
 {
-  LENGTH: 15000,
+  LENGTH: 2000,
   scores_received: 0,
   clients: []
 };
@@ -37,15 +37,16 @@ function compute_winner()
 
   for (var c in globals.clients)
   {
+    console.log("*" + c.id + ", " + c.score);
     if (c.score > max) max = c.score;  
     if (c.score < min) min = c.score;  
   }
 
   console.log(globals.scores_received);
 
-  for (var cl in globals.clients)
+  for (c in globals.clients)
   {
-    console.log(cl.score + " " + cl.id);
+    console.log("*" + c.id);
     cl.socket.emit('results', {min: min, max: max, my: c.score});
     cl.score = 0;
   }
@@ -72,6 +73,5 @@ io.sockets.on('connection', function(socket)
   });
  
   globals.clients[socket.id] = {id: socket.id, socket: socket, score: 0};
-  console.log(socket.id + "\t" + globals.clients[socket.id].score);
 });
 

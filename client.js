@@ -1,6 +1,6 @@
 var globals = 
 {
-  LENGTH: 15000,
+  LENGTH: 2000,
   interval: null,
   timer: null,
   score: 0,
