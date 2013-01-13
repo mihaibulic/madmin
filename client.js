@@ -58,7 +58,7 @@ window.onload = function()
 
     timer = new Timer(globals.LENGTH - (new Date().getTime() - time));
     update();
-    globals.interval.setInterval(update, 500);
+    globals.interval = setInterval(update, 500);
   });
 };
 
