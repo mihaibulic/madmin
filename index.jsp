@@ -14,7 +14,7 @@
   </div>
   <div id="main">
     <input id="start_button" class="red button" type="button" value="Start" onclick="start_click()" />
-    <p id="time" style="visibility: hidden">00:00</p>
+    <p id="time" style="visibility: hidden">:0</p>
     <p id="question">This space is for questions!</p>
     <p id="answer">0</p>
     <input id="1" class="blue button" type="button" value="1" onclick="answer(1)" />

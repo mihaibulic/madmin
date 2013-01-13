@@ -30,7 +30,7 @@ function update()
     state.interval = null;
   }
 
-  document.getElementById("time").innerHTML = "00:" + Math.round(state.timer.timeLeft()/1000);
+  document.getElementById("time").innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
 }
 
 function answer(ans)
