@@ -6,17 +6,22 @@ var state =
   score: 0,
   my_answer: 0,
   act_answer: 0,
+  playing: false,
   server: null
 };
 
 function start_click()
 {
-  state.server.emit('start', {});
-  document.getElementById("start_button").style.visibility = "hidden";
+  if (!state.playing)
+  {
+    state.server.emit('start', {});
+    document.getElementById("start_button").style.visibility = "hidden";
+  }
 }
 
 function start(time)
 {
+  state.playing = true;
   state.timer = new Timer(state.LENGTH, true);
   state.score = 0;
   state.interval = setInterval(update, 500);
@@ -30,38 +35,47 @@ function start(time)
 
 function update()
 {
-  if(state.timer.isDone())
+  if(state.playing)
   {
-    clearInterval(state.interval);
-    state.interval = null;
-  }
+    if(state.timer.isDone())
+    {
+      clearInterval(state.interval);
+      state.interval = null;
+    }
 
-  document.getElementById("time").innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
+    document.getElementById("time").innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
+  }
 }
 
 function answer(ans)
 {
-  if (ans === "x")
+  if (state.playing)
   {
-    state.my_answer = Math.floor(state.my_answer/10);
-  }
-  else
-  {
-    state.my_answer = Math.floor(state.my_answer*10 + ans);
-  }
+    if (ans === "x")
+    {
+      state.my_answer = Math.floor(state.my_answer/10);
+    }
+    else
+    {
+      state.my_answer = Math.floor(state.my_answer*10 + ans);
+    }
   
-  document.getElementById("answer").innerHTML = state.my_answer; 
+    document.getElementById("answer").innerHTML = state.my_answer;
+  }
 }
 
 function submit()
 {
-  state.score += (state.my_answer === state.act_answer) ? 1 : -1;
-  console.log(state.score);
+  if (state.playing)
+  {
+    state.score += (state.my_answer === state.act_answer) ? 1 : -1;
+    console.log(state.score);
 
-  document.getElementById("answer").innerHTML = "-"; 
-  state.my_answer = 0;
+    document.getElementById("answer").innerHTML = "-"; 
+    state.my_answer = 0;
 
-  generate_problem();
+    generate_problem();
+  }
 }
 
 function generate_problem()
@@ -108,6 +122,7 @@ function display_results(data)
 
 function end()
 {
+  state.playing = false;
   clearInterval(state.interval);
   state.interval = null;
     
