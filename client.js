@@ -22,17 +22,18 @@ function start_click()
   }
 }
 
-function start(time)
+function start(start_time)
 {
   state.playing = true;
   
-  state.time_field.innerHTML = ":" + state.LENGTH;
+  var time = state.LENGTH - ((new Date()).getTime() - start_time);
+  state.time_field.innerHTML = ":" + Math.round(time/1000);
   state.que_field.innerHTML = "Q: ";
   state.ans_field.innerHTML = "A: ";
   
   generate_problem();
   
-  state.timer = new Timer(state.LENGTH, true);
+  state.timer = new Timer(time, true);
   state.score = 0;
   
   update();
@@ -47,6 +48,7 @@ function update()
     {
       clearInterval(state.interval);
       state.interval = null;
+      state.playing = false;
     }
 
     state.time_field.innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
@@ -118,7 +120,6 @@ function generate_problem()
 
 function display_results(max)
 {
-  console.log("MAX" + max);
   state.que_field.innerHTML = (state.score === max) ? "YOU WON!" : "you lost :("; 
   state.ans_field.innerHTML = "score: " + state.score;
 
