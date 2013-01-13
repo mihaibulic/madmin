@@ -26,6 +26,8 @@ function start(start_time)
 {
   state.playing = true;
   
+  alert("time: " + time + ", diff: " + ((new Date()).getTime()-start_time));
+
   var time = state.LENGTH - ((new Date()).getTime() - start_time);
   state.time_field.innerHTML = ":" + Math.round(time/1000);
   state.que_field.innerHTML = "Q: ";
