@@ -56,7 +56,7 @@ function update()
   }
 }
 
-function clear()
+function clear_answer()
 {
   if (state.playing)
   {
@@ -65,7 +65,7 @@ function clear()
   }
 }
 
-function answer(ans)
+function add_to_answer(ans)
 {
   if (state.playing)
   {
