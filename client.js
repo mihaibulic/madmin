@@ -20,8 +20,11 @@ function start(time)
 {
   state.timer = new Timer(state.LENGTH - (new Date().getTime() - time), true);
   state.score = 0;
+  
   state.interval = setInterval(update, 50);
   update();
+  
+  generate_problem();
 }
 
 function update()
@@ -51,8 +54,42 @@ function answer(ans)
 
 function submit()
 {
-  state.score += ans;
-  console.log("Score: " + state.score);
+  state.score += (state.my_answer === state.act_answer) ? 1 : -1;
+  generate_problem();
+}
+
+function generate_problem()
+{
+  var a = 0;
+  var b = 0; 
+  var first = 0;
+  var second = 0;
+  var t = Math.floor(Math.random()*3);
+  var p = document.getElementById("question");
+
+  if (t === 0)
+  {
+    a = Math.round(Math.random()*100);
+    b = Math.round(Math.random()*100);
+    p.innerHTML = a + " + " + b;
+    state.act_answer = a + b; 
+  }
+  else if (t === 1)
+  {
+    a = Math.round(Math.random()*100);
+    b = Math.round(Math.random()*100);
+    first = Math.max(a,b);
+    sec = Math.min(a,b); 
+    p.innerHTML = first + " - " + sec;
+    state.act_answer = first - sec;
+  }
+  else 
+  {
+    a = Math.round(Math.random()*13);
+    b = Math.round(Math.random()*13);
+    p.innerHTML = a + " x " + b;
+    state.act_answer = a * b;
+  }
 }
 
 function display_results(data)
