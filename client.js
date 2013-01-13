@@ -50,6 +50,7 @@ function end()
 
 window.onload = function()
 {
+  console.log("loaded");
   state.server = io.connect('ws://madmin.misquares.com');
   state.server.on('start', function(time)
   {
