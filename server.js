@@ -32,6 +32,8 @@ function add_score(id, score)
 
 function compute_winner()
 {
+  console.log("users: " + state.clients.length);
+
   var max = 0;
   var min = 9999;
 
@@ -52,17 +54,9 @@ function compute_winner()
 
 io.sockets.on('connection', function(socket) 
 {
-  console.log("new connection: " + socket.id);
-
   socket.on('start', start);  
-  socket.on('disconnect', function() 
-  {
-    delete state.clients[socket.id];
-  });
-  socket.on('score', function(score)
-  {
-    add_score(socket.id, score);
-  });
+  socket.on('disconnect', function() { delete state.clients[socket.id]; });
+  socket.on('score', function(score) { add_score(socket.id, score); });
  
   state.clients[socket.id] = {id: socket.id, socket: socket, score: 0};
 });
