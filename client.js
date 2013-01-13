@@ -7,6 +7,9 @@ var state =
   my_answer: 0,
   act_answer: 0,
   playing: false,
+  ans_field: document.getElementById("answer"),
+  que_field: document.getElementById("question"),
+  time_field: document.getElementById("time"),
   server: null
 };
 
@@ -26,8 +29,8 @@ function start(time)
   state.score = 0;
   state.interval = setInterval(update, 500);
   
-  document.getElementById("time").innerHTML = ":" + state.LENGTH;
-  document.getElementById("answer").innerHTML = "-";
+  state.time_field.innerHTML = ":" + state.LENGTH;
+  state.que_field.innerHTML = "-";
   
   update();
   generate_problem();
@@ -35,15 +38,15 @@ function start(time)
 
 function update()
 {
-  if(state.playing)
+  if (state.playing)
   {
-    if(state.timer.isDone())
+    if (state.timer.isDone())
     {
       clearInterval(state.interval);
       state.interval = null;
     }
 
-    document.getElementById("time").innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
+    state.time_field.innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
   }
 }
 
@@ -53,14 +56,14 @@ function answer(ans)
   {
     if (ans === "x")
     {
-      state.my_answer = Math.floor(state.my_answer/10);
+      state.ans_field.innerHTML = "-";
+      state.my_answer = 0; 
     }
     else
     {
+      state.ans_field.innerHTML += ans; 
       state.my_answer = Math.floor(state.my_answer*10 + ans);
     }
-  
-    document.getElementById("answer").innerHTML = state.my_answer;
   }
 }
 
@@ -71,7 +74,7 @@ function submit()
     state.score += (state.my_answer === state.act_answer) ? 1 : -1;
     console.log(state.score);
 
-    document.getElementById("answer").innerHTML = "-"; 
+    state.ans_field.innerHTML = "-"; 
     state.my_answer = 0;
 
     generate_problem();
@@ -85,13 +88,12 @@ function generate_problem()
   var first = 0;
   var second = 0;
   var t = Math.floor(Math.random()*3);
-  var p = document.getElementById("question");
 
   if (t === 0)
   {
     a = Math.round(Math.random()*100);
     b = Math.round(Math.random()*100);
-    p.innerHTML = a + " + " + b;
+    state.que_field.innerHTML = a + " + " + b;
     state.act_answer = a + b; 
   }
   else if (t === 1)
@@ -100,22 +102,22 @@ function generate_problem()
     b = Math.round(Math.random()*100);
     first = Math.max(a,b);
     sec = Math.min(a,b); 
-    p.innerHTML = first + " - " + sec;
+    state.que_field.innerHTML = first + " - " + sec;
     state.act_answer = first - sec;
   }
   else 
   {
     a = Math.round(Math.random()*13);
     b = Math.round(Math.random()*13);
-    p.innerHTML = a + " x " + b;
+    state.que_field.innerHTML = a + " x " + b;
     state.act_answer = a * b;
   }
 }
 
 function display_results(data)
 {
-  document.getElementById("question").innerHTML = (data.my === data.max) ? "YOU WON!" : "you lost :("; 
-  document.getElementById("answer").innerHTML = "score: " + data.my;
+  state.que_field.innerHTML = (data.my === data.max) ? "YOU WON!" : "you lost :("; 
+  state.ans_field.innerHTML = "score: " + data.my;
 
   document.getElementById("start_button").style.visibility = "visible";
 }
