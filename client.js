@@ -27,8 +27,8 @@ function start(time)
   state.playing = true;
   
   state.time_field.innerHTML = ":" + state.LENGTH;
-  state.que_field.innerHTML = " ";
-  state.ans_field.innerHTML = " ";
+  state.que_field.innerHTML = ">";
+  state.ans_field.innerHTML = ">";
   
   generate_problem();
   
@@ -59,7 +59,7 @@ function answer(ans)
   {
     if (ans === "x")
     {
-      state.ans_field.innerHTML = " ";
+      state.ans_field.innerHTML = ">";
       state.my_answer = 0; 
     }
     else
@@ -77,7 +77,7 @@ function submit()
     state.score += (state.my_answer === state.act_answer) ? 1 : -1;
     console.log(state.score);
 
-    state.ans_field.innerHTML = " "; 
+    state.ans_field.innerHTML = ">"; 
     state.my_answer = 0;
 
     generate_problem();
