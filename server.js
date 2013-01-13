@@ -35,21 +35,19 @@ function compute_winner()
   console.log("users: " + state.clients.length);
 
   var max = 0;
-  var min = 9999;
 
   for (var c in state.clients)
   {
     if (state.clients[c].score > max) max = state.clients[c].score;  
-    if (state.clients[c].score < min) min = state.clients[c].score;  
   }
 
   for (c in state.clients)
   {
-    state.clients[c].socket.emit('results', {min: min, max: max, my: state.clients[c].score});
+    state.clients[c].socket.emit('results', max);
     state.clients[c].score = 0;
   }
 
-  state.scores_receives = 0;
+  state.scores_received = 0;
 }
 
 io.sockets.on('connection', function(socket) 
