@@ -55,6 +55,7 @@ function answer(ans)
 function submit()
 {
   state.score += (state.my_answer === state.act_answer) ? 1 : -1;
+  document.getElementById("answer").innerHTML = "-"; 
   generate_problem();
 }
 
