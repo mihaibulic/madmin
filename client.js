@@ -55,7 +55,11 @@ function answer(ans)
 function submit()
 {
   state.score += (state.my_answer === state.act_answer) ? 1 : -1;
+  console.log(state.score);
+
   document.getElementById("answer").innerHTML = "-"; 
+  state.my_answer = 0;
+
   generate_problem();
 }
 
@@ -95,12 +99,8 @@ function generate_problem()
 
 function display_results(data)
 {
-  console.log("winner: " + data.max);
-  console.log("my score: " + data.my);
-  console.log("loser: " + data.min);
-     
-  if (data.my === data.max) console.log("YOU WON");
-  else if (data.my === data.min) console.log("YOU LOST");
+  document.getElementById("question").innerHTML = (data.my === data.max) ? "YOU WON!" : "you lost :("; 
+  document.getElementById("answer").innerHTML = "score: " + data.my;
 
   document.getElementById("time").style.visibility = "hidden";
   document.getElementById("start_button").style.visibility = "visible";
