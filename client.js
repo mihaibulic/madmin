@@ -119,6 +119,7 @@ function generate_problem()
 
 function display_results(max)
 {
+  console.log(max);
   state.que_field.innerHTML = (state.score === max) ? "YOU WON!" : "you lost :("; 
   state.ans_field.innerHTML = "score: " + state.score;
 
