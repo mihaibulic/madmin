@@ -130,7 +130,10 @@ function end()
   state.playing = false;
   clearInterval(state.interval);
   state.interval = null;
+    
   state.time_field.innerHTML = ":0";
+  state.que_field.innerHTML = "Q: ";
+  state.ans_field.innerHTML = "A: ";
   
   state.server.emit('score', state.score);
 }
