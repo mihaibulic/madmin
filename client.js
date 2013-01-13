@@ -10,6 +10,7 @@ var state =
   ans_field: document.getElementById("answer"),
   que_field: document.getElementById("question"),
   time_field: document.getElementById("time"),
+  start_button: document.getElementById("start_button"),
   server: null
 };
 
@@ -18,8 +19,8 @@ function start_click()
   if (!state.playing)
   {
     state.server.emit('start', {});
-    document.getElementById("start_button").value = "Starting...";
-    document.getElementById("start_button").className = "yellow button";
+    start_button.innerHTML = "Starting...";
+    start_button.className = "yellow button";
   }
 }
 
@@ -38,7 +39,7 @@ function start()
   
   update();
   state.interval = setInterval(update, 500);
-  document.getElementById("start_button").style.visibility = "hidden";
+  start_button.style.visibility = "hidden";
 }
 
 function update()
@@ -124,7 +125,9 @@ function display_results(max)
   state.que_field.innerHTML = (state.score === max) ? "YOU WON!" : "you lost :("; 
   state.ans_field.innerHTML = "score: " + state.score;
 
-  document.getElementById("start_button").style.visibility = "visible";
+  start_button.innerHTML = "Start";
+  start_button.className = "red button";
+  start_button.style.visibility = "visible";
 }
 
 function end()
