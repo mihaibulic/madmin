@@ -2,8 +2,8 @@
 <html>
 <head>
   <title> MAD MINUTE!</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
   <%@ include file="/support/head.jsp"%>
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
   <div id="logo">
