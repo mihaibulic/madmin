@@ -5,6 +5,5 @@ if [ $# -eq 0 ]; then
   exit -1;
 fi
 
-find ./client -name '*.js' | xargs grep --line-number --with-filename --color -e "${1}"
-find ./server -name '*.js' | xargs grep --line-number --with-filename --color -e "${1}"
+find . -name '*.js' | xargs grep --line-number --with-filename --color -e "${1}"
 

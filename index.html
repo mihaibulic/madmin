@@ -10,17 +10,13 @@
   <div id="logo"></div>
   <div id="main">
     <div id="login">
-      <h1>Enter Your Name:</h1>
-      <input type="text" id="namebox" />
-      <input type="button" value="Join" onclick="globals.join_submit()" />
-      <input type="button" value="Map Maker" onclick="globals.mapSetup()" />
-    </div>
-    <div id="loading">
-      <h2>Loading</h2>
+      <input type="button" value="Start" onclick="start()" />
+      <input type="button" value="Right" onclick="answer(1)" />
+      <input type="button" value="Wrong" onclick="answer(-1)" />
+      <input type="text" id="answer" style="display:hidden"/>
     </div>
     <div id="game">
-      <canvas width="1000" height="500" id="cnv">Error: can't display canvas. Download the lastest version of Chrome for free.</canvas>
-      <canvas id="renderer"></canvas>
+      <canvas width="750" height="1250" id="cnv">Error: can't display canvas. Download the lastest version of Chrome for free.</canvas>
     </div>
   </div>
   <div id="footer">
