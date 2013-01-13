@@ -4,7 +4,7 @@
   <title> MAD MINUTE!</title>
   <script type="text/javascript" src="Timer.js"></script>
   <script type="text/javascript" src="client.js"></script>
-  <script type="text/javascript" src="socket.io.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <%@ include file="/support/head.jsp"%>
 </head>
