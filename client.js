@@ -18,7 +18,7 @@ function start_click()
 
 function start(time)
 {
-  state.timer = new Timer(state.LENGTH - (new Date().getTime() - time), true);
+  state.timer = new Timer(state.LENGTH, true);
   state.score = 0;
   
   state.interval = setInterval(update, 50);
