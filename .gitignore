@@ -10,6 +10,7 @@ lib-cov
 *.pid
 *.gz
 *.swp
+*.jar
 .project
 *.out
 *sublime*
@@ -18,4 +19,3 @@ logs
 results
 .metadata
 .settings
-node_modules
