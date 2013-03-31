@@ -4,7 +4,7 @@ html, body {
     background-color: #242424;
     color: #DBDBDB;
     font-family: 'QuicksandBook', Arial, sans-serif;
-    font-size: 40px;
+    font-size: 5%;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -13,16 +13,16 @@ html, body {
 
 h1 {
     text-align: center;
-    font-size: 100px;
+    font-size: 10%;
 }
 
 .button {
-    margin-left: 100px;
-    margin: 20px;
-    font-size: 45px;
-    width: 225px;
-    height: 100px;
-    padding-top: 40px;
+    margin-left: 5%;
+    margin: 2%;
+    font-size: 5%;
+    width: 10%;
+    height: 10%;
+    padding-top: 2%;
     cursor: pointer;
 }
 
@@ -32,7 +32,7 @@ h1 {
 
 #time {
     color: #CC0000;
-    font-size: 45px;
+    font-size: 5%;
 }
 
 #footer {
