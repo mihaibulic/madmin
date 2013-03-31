@@ -11,6 +11,9 @@
   </div>
   <div id="main">
     <a id="start" class="green button" onclick="start_click()">Start</a>
+    <a id="question" class="hidden">Q</a>
+    <a id="time" class="hidden">:0</a>
+    <a id="answer" class="hidden">A</a>
     <br/>
     <a id="1" class="blue button" onclick="add_to_answer(1)">1</a>
     <a id="2" class="blue button" onclick="add_to_answer(2)">2</a>
