@@ -12,6 +12,7 @@ var state =
 function start()
 {
   state.clients = [];
+  state.players = 0;
   state.scores_received = 0;
   io.sockets.emit('start',{});
 }
