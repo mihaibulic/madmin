@@ -128,7 +128,7 @@ function display_results(max)
   }
   else
   {
-    state.start_field.innerHTML = "you lost"; 
+    state.start_field.innerHTML = "You Lost"; 
     state.start_field.className = "red button";
   }
   state.start_field.innerHTML += " (" + state.score + " pts)";
