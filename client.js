@@ -1,34 +1,43 @@
 var LENGTH= 16000;
-var COOLDOWN= 1500;
+var COOLDOWN_LENGTH= 1500;
 var MAX_SCORE = 100;
 var MIN_SCORE = 25;
 var PROBLEM_TIME = 3000;
 var ANSWER_PENALTY = -25;
 var TIME_PENALTY = -25;
+var WRONG_ANSWER_LENGTH = 1000;
 
-var interval= null;
-var timer= null;
-var problem_timer= null;
-var tries=0;
-var score= 0;
-var my_answer= "";
-var act_answer= 0;
-var playing= false;
-var ans_field= document.getElementById("answer");
-var que_field= document.getElementById("question");
-var time_field= document.getElementById("time");
-var start_field= document.getElementById("start");
-var server= null;
+// MODES
+var NONE = -1;
+var READY = 0;
+var PLAYING = 1;
+var WAITING = 2;
+var COOLDOWN = 3;
+var NEXT_GAME = 4;
+
+var interval = null;
+var timer = null;
+var problem_timer = null;
+var tries =0;
+var score = 0;
+var my_answer = "";
+var act_answer = 0;
+var mode = NONE;
+var ans_field = document.getElementById("answer");
+var que_field = document.getElementById("question");
+var time_field = document.getElementById("time");
+var start_field = document.getElementById("start");
+var server = null;
 
 function start_click() {
-  if (playing)
+  if (mode === PLAYING)
     submit();
-  else if (timer === null || timer.isDone()) 
+  else if (mode === READY)
     server.emit('start', {});
 }
 
 function start() {
-  playing = true;
+  mode = PLAYING;
   timer = new Timer(LENGTH, true);
   score = 0;
 
@@ -44,17 +53,19 @@ function start() {
 }
 
 function wait() {
+  mode = NEXT_GAME;
   start_field.className = "yellow button";
   start_field.innerHTML = "Finishing game";
 }
 
 function ready() {
+  mode = READY;
   start_field.className = "green button";
   start_field.innerHTML = "Start";
 }
 
 function update() {
-  if (playing) {
+  if (mode === PLAYING) {
     if (timer.isDone())
       end();
     else 
@@ -62,36 +73,6 @@ function update() {
       time_field.innerHTML = ":" + Math.round(timer.timeLeft()/1000);
       time_field.className = (timer.timeLeft() <= 5000 ? "red button" :
 	(timer.timeLeft() <= 10000 ? "yellow" : "green")) + " button";
-    }
-  }
-}
-
-function clear_answer() {
-  if (playing) {
-    my_answer = ""; 
-    ans_field.innerHTML = "A";
-  }
-}
-
-function add_to_answer(ans) {
-  if (playing && my_answer.length < 3) {
-    my_answer += "" + ans;
-    ans_field.innerHTML = "A: " + my_answer;
-  }
-}
-
-function submit() {
-  if (playing) {
-    if (my_answer === act_answer) {
-      var try_penalty = tries * ANSWER_PENALTY;
-      var time_penalty = TIME_PENALTY*(PROBLEM_TIME - problem_timer.timeLeft())/1000.0;
-      score += Math.round(Math.max(MIN_SCORE, MAX_SCORE + try_penalty + time_penalty));
-      generate_problem();
-    }
-    else if (my_answer.length > 0){
-      ans_field.innerHTML = "A";
-      my_answer = "";
-      tries++;
     }
   }
 }
@@ -129,27 +110,41 @@ function generate_problem() {
   ans_field.innerHTML = "A";
 }
 
-function display_results(max) {
-  if (playing) {
-    if (score === max) {
-      start_field.innerHTML = "YOU WON"; 
-      start_field.className = "green button";
-    }
-    else {
-      start_field.innerHTML = "You Lost"; 
-      start_field.className = "red button";
-    }
-    start_field.innerHTML += " (" + Math.round(score) + " pts)";
-    playing = false;
-    timer = new Timer(COOLDOWN, true); 
-    setTimeout(ready, COOLDOWN);
+function add_to_answer(ans) {
+  if (mode === PLAYING && my_answer.length < 3) {
+    my_answer += "" + ans;
+    ans_field.innerHTML = "A: " + my_answer;
   }
-  else
-    ready();
+}
+
+function clear_answer() {
+  if (mode === PLAYING) {
+    my_answer = ""; 
+    ans_field.innerHTML = "A";
+  }
+}
+
+function submit() {
+  if (mode === PLAYING) {
+    if (my_answer === act_answer) {
+      var try_penalty = tries * ANSWER_PENALTY;
+      var time_penalty = TIME_PENALTY*(PROBLEM_TIME - problem_timer.timeLeft())/1000.0;
+      score += Math.round(Math.max(MIN_SCORE, MAX_SCORE + try_penalty + time_penalty));
+      generate_problem();
+    }
+    else if (my_answer.length > 0){
+      tries++;
+      my_answer = "";
+      ans_field.innerHTML = "A";
+      ans_field.className = "red button";
+      setTimeout(function() { ans_field.className = "disabled button" }, WRONG_ANSWER_LENGTH);
+    }
+  }
 }
 
 function end() {
-  if (playing) {
+  if (mode === PLAYING) {
+    mode = WAITING;
     clearInterval(interval);
     interval = null;
     
@@ -162,6 +157,22 @@ function end() {
 
     server.emit('score', score);
   }
+}
+
+function display_results(max) {
+  if (mode === WAITING) {
+    if (score === max) {
+      start_field.innerHTML = "YOU WON"; 
+      start_field.className = "green button";
+    }
+    else {
+      start_field.innerHTML = "You Lost"; 
+      start_field.className = "red button";
+    }
+    start_field.innerHTML += " (" + Math.round(score) + " pts)";
+    mode = COOLDOWN;
+  }
+  setTimeout(ready, COOLDOWN_LENGTH);
 }
 
 var isMobile = {
