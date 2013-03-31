@@ -12,6 +12,8 @@ var state = {
   start_field: document.getElementById("start"),
   server: null
 };
+  ans_field: document.getElementById("answer"),
+  my_answer: "",
 
 function start_click()
 {
@@ -70,11 +72,11 @@ function clear_answer()
 
 function add_to_answer(ans)
 {
-  if (state.playing)
-  {
-    state.my_answer += "" + ans;
-    state.ans_field.innerHTML = "A: " + state.my_answer;
-  }
+//  if (state.playing)
+//  {
+    my_answer += "" + ans;
+    ans_field.innerHTML = "A: " + my_answer;
+//  }
 }
 
 function submit()
