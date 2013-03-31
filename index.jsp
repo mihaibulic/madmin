@@ -10,7 +10,7 @@
     <h1>Mad Minute!</h1>  
   </div>
   <div id="main">
-    <a id="start" class="green button" onclick="start_click()">Start</a>
+    <a id="start" class="disabled button" onclick="start_click()">Loading...</a>
     <a id="question" class="hidden">Q</a>
     <a id="time" class="hidden">:0</a>
     <a id="answer" class="hidden">A</a>

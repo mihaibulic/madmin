@@ -63,6 +63,15 @@ function remove_player(id) {
 io.sockets.on('connection', function(socket) 
 {
   console.log('connected ' + socket.id);
+
+  if (playing) 
+  {
+    socket.emit('wait', {});
+  else 
+  {
+    socket.emit('ready', {});
+  } 
+
   socket.on('start', start);  
   socket.on('heart', function() { add_player(socket); });
   socket.on('score', function(score) { add_score(socket.id, score); });

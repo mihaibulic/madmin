@@ -40,6 +40,18 @@ function start()
   server.emit('heart', {});
 }
 
+function wait()
+{
+  start_field.className = "yellow button";
+  start_field.innerHTML = "Game in Progress";
+}
+
+function ready()
+{
+  start_field.className = "green button";
+  start_field.innerHTML = "Start";
+}
+
 function update()
 {
   if (playing)
@@ -119,17 +131,19 @@ function generate_problem()
 
 function display_results(max)
 {
-  if (score === max)
-  {
-    start_field.innerHTML = "YOU WON"; 
-    start_field.className = "green button";
+  if (playing) {
+    if (score === max)
+    {
+      start_field.innerHTML = "YOU WON"; 
+      start_field.className = "green button";
+    }
+    else
+    {
+      start_field.innerHTML = "You Lost"; 
+      start_field.className = "red button";
+    }
+    start_field.innerHTML += " (" + score + " pts)";
   }
-  else
-  {
-    start_field.innerHTML = "You Lost"; 
-    start_field.className = "red button";
-  }
-  start_field.innerHTML += " (" + score + " pts)";
 }
 
 function end()
@@ -199,6 +213,8 @@ window.onload = function()
   }
   server = io.connect('ws://madmin.misquares.com');
   server.on('start', start);
+  server.on('wait', wait);
+  server.on('ready', ready);
   server.on('results', display_results);
 };
 
