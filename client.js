@@ -135,13 +135,13 @@ function display_results(max)
       start_field.className = "red button";
     }
     start_field.innerHTML += " (" + score + " pts)";
+    playing = false;
   }
 }
 
 function end()
 {
   if (playing) {
-    playing = false;
     clearInterval(interval);
     interval = null;
     
