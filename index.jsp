@@ -4,6 +4,7 @@
   <title> MAD MINUTE!</title>
   <%@ include file="/support/head.jsp"%>
   <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" href="handheld.css" media="handheld"/>
 </head>
 <body>
   <div id="logo">
