@@ -34,6 +34,7 @@ h1 {
 }
 
 #question, #answer, #time {
+    font-weight:bold;
     font-size: 1em;
 }
 
