@@ -1,16 +1,23 @@
 var io = require('socket.io').listen(1338);
 io.set('log level', 1);
 
-var LENGTH= 15000;
-var playing= false;
-var clients= []; 
-var players= 0;
-var scores_received= 0;
+var LENGTH = 15000;
+var TIMEOUT_LENGTH = 2000;
 
-function start()
-{
-  if (!playing) {
-    playing = true;
+// MODES
+var READY = 0;
+var PLAYING = 1;
+var COMPUTING_WINNER = 2;
+
+var mode = READY;
+var clients = []; 
+var players = 0;
+var scores_received = 0;
+var timeout = null;
+
+function start() {
+  if (mode === READY) { 
+    mode = PLAYING;
     clients = [];
     players = 0;
     scores_received = 0;
@@ -18,32 +25,34 @@ function start()
   }
 }
 
-function add_score(id, score)
-{
+function add_score(id, score) {
   if (clients[id]) {
     scores_received++;
     clients[id].score = score;
   
     console.log("scores received");
-    if (scores_received >= players)
-    {
-      console.log("computing winner");
+    if (scores_received >= players) {
       compute_winner(); 
+    }
+    else {
+      timeout = setTimeout(compute_winner, TIMEOUT_LENGTH);
     }
   }
 }
 
-function compute_winner()
-{
+function compute_winner() {
+  mode = COMPUTING_WINNER;
+  clearTimeout(timeout);
+  
+  console.log("computing winner");
   var max = -999;
-  for (var c in clients)
-  {
+  for (var c in clients) {
     if (clients[c].score > max) max = clients[c].score;  
     clients[c].score = 0;
   }
 
   io.sockets.emit('results', max);  
-  playing = false;
+  mode = READY;
 }
 
 function add_player(socket) {
@@ -60,16 +69,15 @@ function remove_player(id) {
     delete clients[id];
 
     if (players === 0) {
-      playing = false;
+      mode = READY;
     }
   }
 }
 
-io.sockets.on('connection', function(socket) 
-{
+io.sockets.on('connection', function(socket) {
   console.log('connected ' + socket.id);
 
-  if (playing) 
+  if (mode === PLAYING) 
     socket.emit('wait', {});
   else 
     socket.emit('ready', {});
