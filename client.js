@@ -143,6 +143,27 @@ function end()
   state.start_field.innerHTML = "Please Wait..."; 
 }
 
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+
 window.onload = function()
 {
   document.onkeyup=function(e) {
@@ -156,4 +177,18 @@ window.onload = function()
   state.server.on('results', display_results);
 };
 
-
+if( isMobile.any() ) {
+  var $ = document; // shortcut
+  var cssId = 'mobile';  // you could encode the css path itself to generate id..
+  if (!$.getElementById(cssId))
+  {
+    var head  = $.getElementsByTagName('head')[0];
+    var link  = $.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'mobile.css';
+    link.media = 'all';
+    head.appendChild(link);
+  }
+}
