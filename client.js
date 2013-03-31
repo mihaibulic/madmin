@@ -10,7 +10,6 @@ var que_field= document.getElementById("question");
 var time_field= document.getElementById("time");
 var start_field= document.getElementById("start");
 var server= null;
-var my_answer_array = [];
 
 function start_click()
 {
@@ -54,7 +53,6 @@ function update()
     else
     {
       time_field.innerHTML = ":" + Math.round(timer.timeLeft()/1000);
-      ans_field.innerHTML = my_answer_array.toString();
     }
   }
 }
@@ -64,7 +62,6 @@ function clear_answer()
   if (playing)
   {
     my_answer = ""; 
-    my_answer_array = []; 
     ans_field.innerHTML = "A: ";
   }
 }
@@ -73,9 +70,8 @@ function add_to_answer(ans)
 {
   if (playing)
   {
-    my_answer_array.push(ans);
-//    ans_field.innerHTML = my_answer += "" + ans;
-//    ans_field.innerHTML = my_answer;
+    my_answer += "" + ans;
+    ans_field.innerHTML = "A: " + my_answer;
   }
 }
 
@@ -120,7 +116,6 @@ function generate_problem()
     act_answer = (a * b) + "";
   }
   my_answer = "";
-  my_answer_array = [];
   ans_field.innerHTML = "A: ";
 }
 
