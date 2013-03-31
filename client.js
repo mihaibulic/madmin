@@ -12,8 +12,8 @@ var state = {
   start_field: document.getElementById("start"),
   server: null
 };
-  ans_field: document.getElementById("answer"),
-  my_answer: "",
+var  ans_field: document.getElementById("answer"),
+var  my_answer: "",
 
 function start_click()
 {
