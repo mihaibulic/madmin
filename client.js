@@ -16,8 +16,12 @@ var state =
 
 function start_click()
 {
-  if (!state.playing)
+  if (state.playing)
   {
+    submit();
+  }
+  else 
+  }
     state.server.emit('start', {});
   }
 }
@@ -167,9 +171,22 @@ var isMobile = {
 window.onload = function()
 {
   document.onkeyup=function(e) {
-    if(e.which == 13) {
-      start_click(); 
-    }
+    switch(e.which) {
+      case 13:
+        start_click(); 
+      break;
+      case 48:
+      case 49:
+      case 50:
+      case 51:
+      case 52:
+      case 53:
+      case 54:
+      case 55:
+      case 56:
+      case 57:
+        add_to_answer(e.which-48); 
+      break;
   }
   state.server = io.connect('ws://madmin.misquares.com');
   state.server.on('start', start);
