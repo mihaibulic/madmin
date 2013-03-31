@@ -68,11 +68,11 @@ function clear_answer()
 
 function add_to_answer(ans)
 {
-//  if (playing)
-//  {
-    my_answer += "" + ans;
-    ans_field.innerHTML = "A: " + my_answer;
-//  }
+  if (playing)
+  {
+    ans_field.innerHTML = my_answer += "" + ans;
+//    ans_field.innerHTML = my_answer;
+  }
 }
 
 function submit()
