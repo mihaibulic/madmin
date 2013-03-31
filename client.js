@@ -202,7 +202,7 @@ window.onload = function()
     }
   }
 
-  if(server == null) {
+  if(server === null) {
     server = io.connect('ws://madmin.misquares.com');
     server.on('start', start);
     server.on('wait', wait);
