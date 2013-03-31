@@ -1,69 +1,65 @@
-var state = {
-  LENGTH: 15000,
-  interval: null,
-  timer: null,
-  score: 0,
-  my_answer: "",
-  act_answer: 0,
-  playing: false,
-  ans_field: document.getElementById("answer"),
-  que_field: document.getElementById("question"),
-  time_field: document.getElementById("time"),
-  start_field: document.getElementById("start"),
-  server: null
-};
-var  ans_field= document.getElementById("answer");
-var  my_answer= "";
+var LENGTH= 15000;
+var interval= null;
+var timer= null;
+var score= 0;
+var my_answer= "";
+var act_answer= 0;
+var playing= false;
+var ans_field= document.getElementById("answer");
+var que_field= document.getElementById("question");
+var time_field= document.getElementById("time");
+var start_field= document.getElementById("start");
+var server= null;
 
 function start_click()
 {
-  if (state.playing)
+  if (playing)
   {
     submit();
   }
   else 
   {
-    state.server.emit('start', {});
+    server.emit('start', {});
   }
 }
 
 function start()
 {
-  state.playing = true;
-  state.timer = new Timer(state.LENGTH, true);
-  state.score = 0;
-  state.time_field.innerHTML = ":" + Math.round(state.LENGTH/1000);
+  playing = true;
+  timer = new Timer(LENGTH, true);
+  score = 0;
+  time_field.innerHTML = ":" + Math.round(LENGTH/1000);
 
-  state.start_field.className = "hidden";
-  state.que_field.className = "green button";
-  state.time_field.className = "green button";
+  start_field.className = "hidden";
+  que_field.className = "green button";
+  time_field.className = "green button";
   ans_field.className = "green button";
   
   generate_problem();
   
-  state.interval = setInterval(update, 500);
+  interval = setInterval(update, 500);
 
-  state.server.emit('heart', {});
+  server.emit('heart', {});
 }
 
 function update()
 {
-  if (state.playing)
+  if (playing)
   {
-    if (state.timer.isDone())
+    if (timer.isDone())
     {
       end();
     }
     else
     {
-      state.time_field.innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
+      time_field.innerHTML = ":" + Math.round(timer.timeLeft()/1000);
     }
   }
 }
 
 function clear_answer()
 {
-  if (state.playing)
+  if (playing)
   {
     my_answer = ""; 
     ans_field.innerHTML = "A: " + my_answer;
@@ -72,7 +68,7 @@ function clear_answer()
 
 function add_to_answer(ans)
 {
-//  if (state.playing)
+//  if (playing)
 //  {
     my_answer += "" + ans;
     ans_field.innerHTML = "A: " + my_answer;
@@ -81,9 +77,9 @@ function add_to_answer(ans)
 
 function submit()
 {
-  if (state.playing)
+  if (playing)
   {
-    state.score += (my_answer === state.act_answer) ? 1 : -1;
+    score += (my_answer === act_answer) ? 1 : -1;
     generate_problem();
   }
 }
@@ -100,8 +96,8 @@ function generate_problem()
   {
     a = Math.round(Math.random()*100);
     b = Math.round(Math.random()*100);
-    state.que_field.innerHTML = a + "+" + b;
-    state.act_answer = (a + b) + ""; 
+    que_field.innerHTML = a + "+" + b;
+    act_answer = (a + b) + ""; 
   }
   else if (t === 1)
   {
@@ -109,15 +105,15 @@ function generate_problem()
     b = Math.round(Math.random()*100);
     first = Math.max(a,b);
     sec = Math.min(a,b); 
-    state.que_field.innerHTML = first + "-" + sec;
-    state.act_answer = (first - sec) + "";
+    que_field.innerHTML = first + "-" + sec;
+    act_answer = (first - sec) + "";
   }
   else 
   {
     a = Math.round(Math.random()*13);
     b = Math.round(Math.random()*13);
-    state.que_field.innerHTML = a + "x" + b;
-    state.act_answer = (a * b) + "";
+    que_field.innerHTML = a + "x" + b;
+    act_answer = (a * b) + "";
   }
   my_answer = "";
   ans_field.innerHTML = "A: ";
@@ -125,35 +121,35 @@ function generate_problem()
 
 function display_results(max)
 {
-  if (state.score === max)
+  if (score === max)
   {
-    state.start_field.innerHTML = "YOU WON"; 
-    state.start_field.className = "green button";
+    start_field.innerHTML = "YOU WON"; 
+    start_field.className = "green button";
   }
   else
   {
-    state.start_field.innerHTML = "You Lost"; 
-    state.start_field.className = "red button";
+    start_field.innerHTML = "You Lost"; 
+    start_field.className = "red button";
   }
-  state.start_field.innerHTML += " (" + state.score + " pts)";
+  start_field.innerHTML += " (" + score + " pts)";
 }
 
 function end()
 {
-  if (state.playing) {
-    state.playing = false;
-    clearInterval(state.interval);
-    state.interval = null;
+  if (playing) {
+    playing = false;
+    clearInterval(interval);
+    interval = null;
     
-    state.time_field.innerHTML = ":0";
-    state.que_field.innerHTML = "please wait";
+    time_field.innerHTML = ":0";
+    que_field.innerHTML = "please wait";
     ans_field.innerHTML = "...";
   
-    state.server.emit('score', state.score);
-    state.start_field.innerHTML = "Please Wait..."; 
-    state.start_field.className = "yellow button";
-    state.que_field.className = "hidden";
-    state.time_field.className = "hidden";
+    server.emit('score', score);
+    start_field.innerHTML = "Please Wait..."; 
+    start_field.className = "yellow button";
+    que_field.className = "hidden";
+    time_field.className = "hidden";
     ans_field.className = "hidden";
   }
 }
@@ -203,9 +199,9 @@ window.onload = function()
       break;
     }
   }
-  state.server = io.connect('ws://madmin.misquares.com');
-  state.server.on('start', start);
-  state.server.on('results', display_results);
+  server = io.connect('ws://madmin.misquares.com');
+  server.on('start', start);
+  server.on('results', display_results);
 };
 
 if( isMobile.any() ) {
