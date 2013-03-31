@@ -24,7 +24,7 @@ function add_score(id, score)
     scores_received++;
     clients[id].score = score;
   
-    console.log("scores rec " + scores_received + ", " + players);
+    console.log("scores received";
     if (scores_received >= players)
     {
       console.log("computing winner");
@@ -47,7 +47,7 @@ function compute_winner()
 }
 
 function add_player(socket) {
-  if(!playing && !clients[socket.id]) {
+  if(!clients[socket.id]) {
     console.log("adding player");
     players++;
     clients[socket.id] = {id: socket.id, socket: socket, score: 0};
