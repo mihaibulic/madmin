@@ -138,6 +138,11 @@ function end()
 
 window.onload = function()
 {
+  document.onkeyup=function(e) {
+    if(e.which == 13) {
+      start_click(); 
+    }
+  }
   state.server = io.connect('ws://madmin.misquares.com');
   state.server.on('start', start);
   state.server.on('end', end);
