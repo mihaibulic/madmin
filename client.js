@@ -21,7 +21,7 @@ function start_click()
     submit();
   }
   else 
-  }
+  {
     state.server.emit('start', {});
   }
 }
