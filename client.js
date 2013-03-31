@@ -1,5 +1,4 @@
-var state = 
-{
+var state = {
   LENGTH: 15000,
   interval: null,
   timer: null,
