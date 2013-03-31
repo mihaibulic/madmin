@@ -97,7 +97,7 @@ function generate_problem()
   {
     a = Math.round(Math.random()*100);
     b = Math.round(Math.random()*100);
-    state.que_field.innerHTML = "Q: " + a + " + " + b;
+    state.que_field.innerHTML = a + " + " + b;
     state.act_answer = a + b; 
   }
   else if (t === 1)
@@ -106,14 +106,14 @@ function generate_problem()
     b = Math.round(Math.random()*100);
     first = Math.max(a,b);
     sec = Math.min(a,b); 
-    state.que_field.innerHTML = "Q: " + first + " - " + sec;
+    state.que_field.innerHTML = first + " - " + sec;
     state.act_answer = first - sec;
   }
   else 
   {
     a = Math.round(Math.random()*13);
     b = Math.round(Math.random()*13);
-    state.que_field.innerHTML = "Q: " + a + " x " + b;
+    state.que_field.innerHTML = a + " x " + b;
     state.act_answer = a * b;
   }
   state.my_answer = 0;
