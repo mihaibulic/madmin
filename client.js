@@ -197,12 +197,11 @@ window.onload = function()
 };
 
 if( isMobile.any() ) {
-  var $ = document; // shortcut
   var cssId = 'mobile';  // you could encode the css path itself to generate id..
-  if (!$.getElementById(cssId))
+  if (!document.getElementById(cssId))
   {
-    var head  = $.getElementsByTagName('head')[0];
-    var link  = $.createElement('link');
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
     link.id   = cssId;
     link.rel  = 'stylesheet';
     link.type = 'text/css';
