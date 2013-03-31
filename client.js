@@ -101,7 +101,7 @@ function submit()
       generate_problem();
     }
     else {
-      ans_field = "A";
+      ans_field.innerHTML = "A";
       my_answer = "";
       tries++;
     }
