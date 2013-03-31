@@ -39,7 +39,7 @@ function start()
   
   generate_problem();
   
-  state.interval = setInterval(update, 200);
+  state.interval = setInterval(update, 500);
 
   state.server.emit('heart', {});
 }
