@@ -47,6 +47,7 @@ function compute_winner()
 }
 
 function add_player(socket) {
+  console.log("adding player " + (playing ? "+" : "-"));
   if(!playing && !clients[socket.id]) {
     players++;
     clients[socket.id] = {id: socket.id, socket: socket, score: 0};

@@ -146,15 +146,13 @@ function end()
     interval = null;
     
     time_field.innerHTML = ":0";
-    que_field.innerHTML = "please wait";
-    ans_field.innerHTML = "...";
-  
-    server.emit('score', score);
     que_field.className = "hidden";
     time_field.className = "hidden";
     ans_field.className = "hidden";
     start_field.className = "yellow button";
     start_field.innerHTML = "Please Wait..."; 
+
+    server.emit('score', score);
   }
 }
 
