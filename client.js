@@ -139,7 +139,7 @@ function end()
   state.ans_field.innerHTML = "...";
   
   state.server.emit('score', state.score);
-  state.start_field.className = "yellow button";
+  state.start_field.className = "disabled button";
   state.start_field.innerHTML = "Please Wait..."; 
 }
 
