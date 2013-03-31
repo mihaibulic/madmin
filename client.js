@@ -26,9 +26,9 @@ function start()
   score = 0;
 
   start_field.className = "hidden";
-  que_field.className = "green button";
+  que_field.className = "disabled button";
   time_field.className = "green button";
-  ans_field.className = "green button";
+  ans_field.className = "disabled button";
 
   interval = setInterval(update, 500);
   time_field.innerHTML = ":" + Math.round(LENGTH/1000);
@@ -54,8 +54,11 @@ function update()
   {
     if (timer.isDone())
       end();
-    else
+    else 
+    {
       time_field.innerHTML = ":" + Math.round(timer.timeLeft()/1000);
+      time_field.className = (timer.timeLeft() < 5000) ? "red button" : "green button";
+    }
   }
 }
 
