@@ -28,8 +28,8 @@ function start()
   state.timer = new Timer(state.LENGTH, true);
   state.score = 0;
   state.time_field.innerHTML = ":" + Math.round(state.LENGTH/1000);
-  start_field.innerHTML = "Play!"; 
-  start_field.className = "red button";
+  state.start_field.innerHTML = "Play!"; 
+  state.start_field.className = "red button";
   
   generate_problem();
   
@@ -124,8 +124,8 @@ function display_results(max)
     state.que_field.innerHTML = "you lost :("; 
   }
   state.ans_field.innerHTML = "score: " + state.score;
-  start_field.className = "green button";
-  start_field.innerHTML = "Start"; 
+  state.start_field.className = "green button";
+  state.start_field.innerHTML = "Start"; 
 }
 
 function end()
@@ -139,8 +139,8 @@ function end()
   state.ans_field.innerHTML = "...";
   
   state.server.emit('score', state.score);
-  start_field.className = "yellow button";
-  start_field.innerHTML = "Please Wait..."; 
+  state.start_field.className = "yellow button";
+  state.start_field.innerHTML = "Please Wait..."; 
 }
 
 window.onload = function()
