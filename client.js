@@ -123,14 +123,15 @@ function display_results(max)
 {
   if (state.score === max)
   {
-    state.start_field.innerHTML = "YOU WON with " + state.score + " points"; 
+    state.start_field.innerHTML = "YOU WON"; 
     state.start_field.className = "green button";
   }
   else
   {
-    state.start_field.innerHTML = "you lost with " + state.score + " points :("; 
+    state.start_field.innerHTML = "you lost"; 
     state.start_field.className = "red button";
   }
+  state.start_field.innerHTML += " (" + state.score + " pts)";
 }
 
 function end()
