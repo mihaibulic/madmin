@@ -57,7 +57,8 @@ function update()
     else 
     {
       time_field.innerHTML = ":" + Math.round(timer.timeLeft()/1000);
-      time_field.className = (timer.timeLeft() < 5000) ? "red button" : "green button";
+      time_field.className = (timer.timeLeft() <= 5000 ? "red button" :
+	(timer.timeLeft() <= 10000 ? "yellow" : "green")) + " button";
     }
   }
 }
