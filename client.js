@@ -37,7 +37,7 @@ function start()
   state.start_field.className = "hidden";
   state.que_field.className = "green button";
   state.time_field.className = "green button";
-  state.ans_field.className = "green button";
+  ans_field.className = "green button";
   
   generate_problem();
   
@@ -65,8 +65,8 @@ function clear_answer()
 {
   if (state.playing)
   {
-    state.my_answer = ""; 
-    state.ans_field.innerHTML = "A: " + state.my_answer;
+    my_answer = ""; 
+    ans_field.innerHTML = "A: " + my_answer;
   }
 }
 
@@ -83,7 +83,7 @@ function submit()
 {
   if (state.playing)
   {
-    state.score += (state.my_answer === state.act_answer) ? 1 : -1;
+    state.score += (my_answer === state.act_answer) ? 1 : -1;
     generate_problem();
   }
 }
@@ -119,8 +119,8 @@ function generate_problem()
     state.que_field.innerHTML = a + "x" + b;
     state.act_answer = (a * b) + "";
   }
-  state.my_answer = "";
-  state.ans_field.innerHTML = "A: ";
+  my_answer = "";
+  ans_field.innerHTML = "A: ";
 }
 
 function display_results(max)
@@ -147,14 +147,14 @@ function end()
     
     state.time_field.innerHTML = ":0";
     state.que_field.innerHTML = "please wait";
-    state.ans_field.innerHTML = "...";
+    ans_field.innerHTML = "...";
   
     state.server.emit('score', state.score);
     state.start_field.innerHTML = "Please Wait..."; 
     state.start_field.className = "yellow button";
     state.que_field.className = "hidden";
     state.time_field.className = "hidden";
-    state.ans_field.className = "hidden";
+    ans_field.className = "hidden";
   }
 }
 
