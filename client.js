@@ -29,7 +29,7 @@ function start()
   state.score = 0;
   state.time_field.innerHTML = ":" + Math.round(state.LENGTH/1000);
   state.start_field.innerHTML = "Play!"; 
-  state.start_field.className = "red button";
+  state.start_field.className = "disabled button";
   
   generate_problem();
   
@@ -139,7 +139,7 @@ function end()
   state.ans_field.innerHTML = "...";
   
   state.server.emit('score', state.score);
-  state.start_field.className = "disabled button";
+  state.start_field.className = "yellow button";
   state.start_field.innerHTML = "Please Wait..."; 
 }
 
