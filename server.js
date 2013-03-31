@@ -16,14 +16,16 @@ function start()
 
 function add_score(id, score)
 {
-  scores_received++;
-  clients[id].score = score;
-
-  console.log("scores rec " + scores_received + ", " + players);
-  if (scores_received >= players)
-  {
-    console.log("computing winner");
-    compute_winner(); 
+  if (clients[id]) {
+    scores_received++;
+    clients[id].score = score;
+  
+    console.log("scores rec " + scores_received + ", " + players);
+    if (scores_received >= players)
+    {
+      console.log("computing winner");
+      compute_winner(); 
+    }
   }
 }
 
