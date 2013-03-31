@@ -188,7 +188,7 @@ var isMobile = {
 
 window.onload = function()
 {
-  document.onkeydown=function(e) {
+  document.onkeypress=function(e) {
     switch(e.which) {
       case 8:
         clear_answer();
