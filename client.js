@@ -172,6 +172,9 @@ window.onload = function()
 {
   document.onkeyup=function(e) {
     switch(e.which) {
+      case 8:
+        clear_answer();
+      break;
       case 13:
         start_click(); 
       break;
