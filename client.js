@@ -123,7 +123,8 @@ function generate_problem()
 
 function display_results(max)
 {
-  if (playing) {
+  if (playing)
+  {
     if (score === max)
     {
       start_field.innerHTML = "YOU WON"; 
@@ -137,6 +138,8 @@ function display_results(max)
     start_field.innerHTML += " (" + score + " pts)";
     playing = false;
   }
+  else
+    ready();
 }
 
 function end()
