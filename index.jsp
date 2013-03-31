@@ -13,6 +13,7 @@
     <a id="time" class="disabled button">:0</a>
     <a id="question" class="disabled button">Q: </a>
     <a id="answer" class="disabled button">A: </a>
+    <br/>
     <a id="1" class="blue button" onclick="add_to_answer(1)">1</a>
     <a id="2" class="blue button" onclick="add_to_answer(2)">2</a>
     <a id="3" class="blue button" onclick="add_to_answer(3)">3</a>
