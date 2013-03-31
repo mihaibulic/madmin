@@ -1,29 +1,26 @@
 var io = require('socket.io').listen(1338);
 io.set('log level', 1);
 
-var state = 
-{
-  LENGTH: 15000,
-  scores_received: 0,
-  players: 0,
-  clients: [] 
-};
+var LENGTH= 15000;
+var scores_received= 0;
+var players= 0;
+var clients= []; 
 
 function start()
 {
-  state.clients = [];
-  state.players = 0;
-  state.scores_received = 0;
+  clients = [];
+  players = 0;
+  scores_received = 0;
   io.sockets.emit('start',{});
 }
 
 function add_score(id, score)
 {
-  state.scores_received++;
-  state.clients[id].score = score;
+  scores_received++;
+  clients[id].score = score;
 
-  console.log("scores rec " + state.scores_received + ", " + state.players);
-  if (state.scores_received >= state.players)
+  console.log("scores rec " + scores_received + ", " + players);
+  if (scores_received >= players)
   {
     console.log("computing winner");
     compute_winner(); 
@@ -35,26 +32,26 @@ function compute_winner()
   console.log("cw");
   var max = -999;
 
-  for (var c in state.clients)
+  for (var c in clients)
   {
-    if (state.clients[c].score > max) max = state.clients[c].score;  
-    state.clients[c].score = 0;
+    if (clients[c].score > max) max = clients[c].score;  
+    clients[c].score = 0;
   }
 
   io.sockets.emit('results', max);  
 }
 
 function add_player(socket) {
-  if(!state.clients[socket.id]) {
-    state.players++;
-    state.clients[socket.id] = {id: socket.id, socket: socket, score: 0};
+  if(!clients[socket.id]) {
+    players++;
+    clients[socket.id] = {id: socket.id, socket: socket, score: 0};
   }
 }
 
 function remove_player(id) {
-  if(state.clients[id]) {
-    state.players--;
-    delete state.clients[id];
+  if(clients[id]) {
+    players--;
+    delete clients[id];
   }
 }
 
