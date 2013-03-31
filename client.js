@@ -31,8 +31,12 @@ function start()
   state.timer = new Timer(state.LENGTH, true);
   state.score = 0;
   state.time_field.innerHTML = ":" + Math.round(state.LENGTH/1000);
+
   state.start_field.innerHTML = "Play!"; 
   state.start_field.className = "disabled button";
+  state.que_field.className = "green button";
+  state.time_field.className = "green button";
+  state.ans_field.className = "green button";
   
   generate_problem();
   
@@ -142,8 +146,11 @@ function end()
   state.ans_field.innerHTML = "...";
   
   state.server.emit('score', state.score);
-  state.start_field.className = "yellow button";
   state.start_field.innerHTML = "Please Wait..."; 
+  state.start_field.className = "yellow button";
+  state.que_field.className = "disabled button";
+  state.time_field.className = "disabled button";
+  state.ans_field.className = "disabled button";
 }
 
 var isMobile = {
