@@ -6,11 +6,6 @@
     padding-top: 1.5%;
 }
 
-#question, #answer, #time {
-    font-weight:bold;
-    font-size: 0.9em;
-}
-
 #start {
     width: 73%;
 }
