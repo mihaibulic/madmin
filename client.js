@@ -127,7 +127,7 @@ function clear_answer() {
 
 function submit() {
   if (mode === PLAYING) {
-    clearTimeout(wrong_answer_interval);
+    clearTimeout(wrong_answer_timeout);
 
     if (my_answer === act_answer) {
       var try_penalty = tries * ANSWER_PENALTY;
@@ -144,7 +144,7 @@ function submit() {
       ans_field.className = "red button";
     }
 
-    wrong_answer_interval = setTimeout(function() { ans_field.className = "disabled button" }, WRONG_ANSWER_LENGTH);
+    wrong_answer_timeout = setTimeout(function() { ans_field.className = "disabled button" }, WRONG_ANSWER_LENGTH);
   }
 }
 
