@@ -33,6 +33,10 @@ h1 {
     color: #CC0000;
 }
 
+#start {
+    width: 32%;
+}
+
 #question, #answer, #time {
     font-weight:bold;
     font-size: 1em;
