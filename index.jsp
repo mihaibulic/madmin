@@ -10,7 +10,6 @@
     <h1>Mad Minute!</h1>  
   </div>
   <div id="main">
-    <a id="start_button" class="red button" onclick="start_click()">Go</a>
     <p id="time">:0</p>
     <p id="question">Hit Go!</p>
     <p id="answer">prepare for social math</p>

@@ -10,7 +10,6 @@ var state =
   ans_field: document.getElementById("answer"),
   que_field: document.getElementById("question"),
   time_field: document.getElementById("time"),
-  start_button: document.getElementById("start_button"),
   server: null
 };
 
@@ -19,7 +18,6 @@ function start_click()
   if (!state.playing)
   {
     state.server.emit('start', {});
-    start_button.className = "yellow button";
   }
 }
 
@@ -33,8 +31,6 @@ function start()
   generate_problem();
   
   state.interval = setInterval(update, 200);
-
-  start_button.className = "green button";
 
   state.server.emit('heart', {});
 }
@@ -125,8 +121,6 @@ function display_results(max)
     state.que_field.innerHTML = "you lost :("; 
   }
   state.ans_field.innerHTML = "score: " + state.score;
-
-  start_button.className = "red button";
 }
 
 function end()
