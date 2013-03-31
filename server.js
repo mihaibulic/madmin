@@ -1,6 +1,7 @@
 var io = require('socket.io').listen(1338);
 io.set('log level', 1);
 
+var playing= false;
 var LENGTH= 15000;
 var scores_received= 0;
 var players= 0;
@@ -8,10 +9,13 @@ var clients= [];
 
 function start()
 {
-  clients = [];
-  players = 0;
-  scores_received = 0;
-  io.sockets.emit('start',{});
+  if (!playing) {
+    playing = true;
+    clients = [];
+    players = 0;
+    scores_received = 0;
+    io.sockets.emit('start',{});
+  }
 }
 
 function add_score(id, score)
@@ -31,9 +35,7 @@ function add_score(id, score)
 
 function compute_winner()
 {
-  console.log("cw");
   var max = -999;
-
   for (var c in clients)
   {
     if (clients[c].score > max) max = clients[c].score;  
@@ -41,6 +43,7 @@ function compute_winner()
   }
 
   io.sockets.emit('results', max);  
+  playing = false;
 }
 
 function add_player(socket) {
@@ -59,7 +62,7 @@ function remove_player(id) {
 
 io.sockets.on('connection', function(socket) 
 {
-  console.log('connected');
+  console.log('connected ' + socket.id);
   socket.on('start', start);  
   socket.on('heart', function() { add_player(socket); });
   socket.on('score', function(score) { add_score(socket.id, score); });
