@@ -3,7 +3,7 @@ var state = {
   interval: null,
   timer: null,
   score: 0,
-  my_answer: 0,
+  my_answer: "",
   act_answer: 0,
   playing: false,
   ans_field: document.getElementById("answer"),
@@ -63,7 +63,7 @@ function clear_answer()
 {
   if (state.playing)
   {
-    state.my_answer = 0; 
+    state.my_answer = ""; 
     state.ans_field.innerHTML = "A: " + state.my_answer;
   }
 }
@@ -100,7 +100,7 @@ function generate_problem()
     a = Math.round(Math.random()*100);
     b = Math.round(Math.random()*100);
     state.que_field.innerHTML = a + "+" + b;
-    state.act_answer = a + b; 
+    state.act_answer = (a + b) + ""; 
   }
   else if (t === 1)
   {
@@ -109,16 +109,16 @@ function generate_problem()
     first = Math.max(a,b);
     sec = Math.min(a,b); 
     state.que_field.innerHTML = first + "-" + sec;
-    state.act_answer = first - sec;
+    state.act_answer = (first - sec) + "";
   }
   else 
   {
     a = Math.round(Math.random()*13);
     b = Math.round(Math.random()*13);
     state.que_field.innerHTML = a + "x" + b;
-    state.act_answer = a * b;
+    state.act_answer = (a * b) + "";
   }
-  state.my_answer = 0;
+  state.my_answer = "";
 }
 
 function display_results(max)
