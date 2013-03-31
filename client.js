@@ -67,7 +67,7 @@ function clear_answer()
   if (playing)
   {
     my_answer = ""; 
-    ans_field.innerHTML = "A: ";
+    ans_field.innerHTML = "A";
   }
 }
 
@@ -121,7 +121,7 @@ function generate_problem()
     act_answer = (a * b) + "";
   }
   my_answer = "";
-  ans_field.innerHTML = "A: ";
+  ans_field.innerHTML = "A";
 }
 
 function display_results(max)
