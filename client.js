@@ -39,7 +39,7 @@ function start()
 function wait()
 {
   start_field.className = "yellow button";
-  start_field.innerHTML = "Game in Progress";
+  start_field.innerHTML = "Finishing game";
 }
 
 function ready()
