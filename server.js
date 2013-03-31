@@ -20,7 +20,7 @@ function add_score(id, score)
   state.scores_received++;
   state.clients[id].score = score;
 
-  console.log("scores rec");
+  console.log("scores rec " + state.scores_received + ", " + state.clients.length);
   if (state.scores_received >= state.clients.length)
   {
     console.log("computing winner");
