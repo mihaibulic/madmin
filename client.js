@@ -72,7 +72,6 @@ function add_to_answer(ans)
 {
   if (state.playing)
   {
-    //state.my_answer = Math.floor(state.my_answer*10 + ans);
     state.my_answer += "" + ans;
     state.ans_field.innerHTML = "A: " + state.my_answer;
   }
@@ -84,7 +83,6 @@ function submit()
   {
     state.score += (state.my_answer === state.act_answer) ? 1 : -1;
     generate_problem();
-    state.ans_field.innerHTML = "A: ";
   }
 }
 
@@ -120,6 +118,7 @@ function generate_problem()
     state.act_answer = (a * b) + "";
   }
   state.my_answer = "";
+  state.ans_field.innerHTML = "A: ";
 }
 
 function display_results(max)
