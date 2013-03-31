@@ -28,7 +28,7 @@
     <br/>
     <a id="x" class="red button" onclick="clear_answer()">X</a>
     <a id="0" class="blue button" onclick="add_to_answer(0)">0</a>
-    <a id="enter" class="green button" onclick="submit()">\></a>
+    <a id="enter" class="green button" onclick="submit()">></a>
   </div>
   <div id="footer">
     <p>&copy; 2012 Mihai</p>
