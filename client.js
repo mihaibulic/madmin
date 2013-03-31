@@ -64,6 +64,7 @@ function clear_answer()
   if (state.playing)
   {
     state.my_answer = 0; 
+    state.ans_field.innerHTML = "A: " + state.my_answer;
   }
 }
 
@@ -71,7 +72,8 @@ function add_to_answer(ans)
 {
   if (state.playing)
   {
-    state.my_answer = Math.floor(state.my_answer*10 + ans);
+    //state.my_answer = Math.floor(state.my_answer*10 + ans);
+    state.my_answer += "" + ans;
     state.ans_field.innerHTML = "A: " + state.my_answer;
   }
 }
