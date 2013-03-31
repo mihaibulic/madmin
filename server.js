@@ -65,12 +65,9 @@ io.sockets.on('connection', function(socket)
   console.log('connected ' + socket.id);
 
   if (playing) 
-  {
     socket.emit('wait', {});
   else 
-  {
     socket.emit('ready', {});
-  } 
 
   socket.on('start', start);  
   socket.on('heart', function() { add_player(socket); });
