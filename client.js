@@ -5,10 +5,10 @@ var score= 0;
 var my_answer= "";
 var act_answer= 0;
 var playing= false;
-var ans_field= null;
-var que_field= null;
-var time_field= null;
-var start_field= null;
+var ans_field= document.getElementById("answer");
+var que_field= document.getElementById("question");
+var time_field= document.getElementById("time");
+var start_field= document.getElementById("start");
 var server= null;
 
 function start_click()
@@ -28,17 +28,15 @@ function start()
   playing = true;
   timer = new Timer(LENGTH, true);
   score = 0;
-  time_field.innerHTML = ":" + Math.round(LENGTH/1000);
 
   start_field.className = "hidden";
   que_field.className = "green button";
   time_field.className = "green button";
   ans_field.className = "green button";
-  
-  generate_problem();
-  
-  interval = setInterval(update, 500);
 
+  interval = setInterval(update, 500);
+  time_field.innerHTML = ":" + Math.round(LENGTH/1000);
+  generate_problem();
   server.emit('heart', {});
 }
 
@@ -146,11 +144,11 @@ function end()
     ans_field.innerHTML = "...";
   
     server.emit('score', score);
-    start_field.innerHTML = "Please Wait..."; 
-    start_field.className = "yellow button";
     que_field.className = "hidden";
     time_field.className = "hidden";
     ans_field.className = "hidden";
+    start_field.className = "yellow button";
+    start_field.innerHTML = "Please Wait..."; 
   }
 }
 
@@ -199,11 +197,6 @@ window.onload = function()
       break;
     }
   }
-  ans_field= document.getElementById("answer");
-  que_field= document.getElementById("question");
-  time_field= document.getElementById("time");
-  start_field= document.getElementById("start");
-  
   server = io.connect('ws://madmin.misquares.com');
   server.on('start', start);
   server.on('results', display_results);
