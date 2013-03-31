@@ -20,16 +20,14 @@ var time_field= document.getElementById("time");
 var start_field= document.getElementById("start");
 var server= null;
 
-function start_click()
-{
+function start_click() {
   if (playing)
     submit();
   else if (timer === null || timer.isDone()) 
     server.emit('start', {});
 }
 
-function start()
-{
+function start() {
   playing = true;
   timer = new Timer(LENGTH, true);
   score = 0;
@@ -45,22 +43,18 @@ function start()
   server.emit('heart', {});
 }
 
-function wait()
-{
+function wait() {
   start_field.className = "yellow button";
   start_field.innerHTML = "Finishing game";
 }
 
-function ready()
-{
+function ready() {
   start_field.className = "green button";
   start_field.innerHTML = "Start";
 }
 
-function update()
-{
-  if (playing)
-  {
+function update() {
+  if (playing) {
     if (timer.isDone())
       end();
     else 
@@ -72,35 +66,29 @@ function update()
   }
 }
 
-function clear_answer()
-{
-  if (playing)
-  {
+function clear_answer() {
+  if (playing) {
     my_answer = ""; 
     ans_field.innerHTML = "A";
   }
 }
 
-function add_to_answer(ans)
-{
-  if (playing && my_answer.length < 3)
-  {
+function add_to_answer(ans) {
+  if (playing && my_answer.length < 3) {
     my_answer += "" + ans;
     ans_field.innerHTML = "A: " + my_answer;
   }
 }
 
-function submit()
-{
-  if (playing)
-  {
+function submit() {
+  if (playing) {
     if (my_answer === act_answer) {
       var try_penalty = tries * ANSWER_PENALTY;
       var time_penalty = TIME_PENALTY*(PROBLEM_TIME - problem_timer.timeLeft())/1000.0;
       score += Math.round(Math.max(MIN_SCORE, MAX_SCORE + try_penalty + time_penalty));
       generate_problem();
     }
-    else {
+    else if (my_answer.length > 0){
       ans_field.innerHTML = "A";
       my_answer = "";
       tries++;
@@ -108,23 +96,20 @@ function submit()
   }
 }
 
-function generate_problem()
-{
+function generate_problem() {
   var a = 0;
   var b = 0; 
   var first = 0;
   var second = 0;
   var t = Math.floor(Math.random()*3);
 
-  if (t === 0)
-  {
+  if (t === 0) {
     a = Math.round(Math.random()*100);
     b = Math.round(Math.random()*100);
     que_field.innerHTML = a + "+" + b;
     act_answer = (a + b) + ""; 
   }
-  else if (t === 1)
-  {
+  else if (t === 1) {
     a = Math.round(Math.random()*100);
     b = Math.round(Math.random()*100);
     first = Math.max(a,b);
@@ -132,8 +117,7 @@ function generate_problem()
     que_field.innerHTML = first + "-" + sec;
     act_answer = (first - sec) + "";
   }
-  else 
-  {
+  else {
     a = Math.round(Math.random()*13);
     b = Math.round(Math.random()*13);
     que_field.innerHTML = a + "x" + b;
@@ -145,30 +129,26 @@ function generate_problem()
   ans_field.innerHTML = "A";
 }
 
-function display_results(max)
-{
-  if (playing)
-  {
-    if (score === max)
-    {
+function display_results(max) {
+  if (playing) {
+    if (score === max) {
       start_field.innerHTML = "YOU WON"; 
       start_field.className = "green button";
     }
-    else
-    {
+    else {
       start_field.innerHTML = "You Lost"; 
       start_field.className = "red button";
     }
     start_field.innerHTML += " (" + Math.round(score) + " pts)";
     playing = false;
-    timer = new Timer(COOLDOWN, true) 
+    timer = new Timer(COOLDOWN, true); 
+    setTimeout(ready, COOLDOWN);
   }
   else
     ready();
 }
 
-function end()
-{
+function end() {
   if (playing) {
     clearInterval(interval);
     interval = null;
@@ -205,8 +185,7 @@ var isMobile = {
     }
 };
 
-window.onload = function()
-{
+window.onload = function() {
   document.onkeypress=function(e) {
     switch(e.which) {
       case 8:
@@ -241,8 +220,7 @@ window.onload = function()
 
 if( isMobile.any() ) {
   var cssId = 'mobile';  // you could encode the css path itself to generate id..
-  if (!document.getElementById(cssId))
-  {
+  if (!document.getElementById(cssId)) {
     var head  = document.getElementsByTagName('head')[0];
     var link  = document.createElement('link');
     link.id   = cssId;
