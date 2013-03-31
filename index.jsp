@@ -10,9 +10,9 @@
     <h1>Mad Minute!</h1>  
   </div>
   <div id="main">
-    <p id="time">:0</p>
-    <p id="question">Hit Go!</p>
-    <p id="answer">prepare for social math</p>
+    <a id="time" class="disabled button">:0</a>
+    <a id="question" class="disabled button">Q: </a>
+    <a id="answer" class="disabled button">A: </a>
     <a id="1" class="blue button" onclick="add_to_answer(1)">1</a>
     <a id="2" class="blue button" onclick="add_to_answer(2)">2</a>
     <a id="3" class="blue button" onclick="add_to_answer(3)">3</a>
