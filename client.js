@@ -84,6 +84,7 @@ function submit()
   {
     state.score += (state.my_answer === state.act_answer) ? 1 : -1;
     generate_problem();
+    state.ans_field.innerHTML = "A: ";
   }
 }
 
