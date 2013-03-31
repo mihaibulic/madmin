@@ -189,6 +189,7 @@ window.onload = function()
       case 57:
         add_to_answer(e.which-48); 
       break;
+    }
   }
   state.server = io.connect('ws://madmin.misquares.com');
   state.server.on('start', start);
