@@ -1,7 +1,15 @@
 var LENGTH= 16000;
 var COOLDOWN= 1500;
+var MAX_SCORE = 100;
+var MIN_SCORE = 25;
+var PROBLEM_TIME = 3000;
+var ANSWER_PENALTY = -25;
+var TIME_PENALTY = -25;
+
 var interval= null;
 var timer= null;
+var problem_timer= null;
+var tries=0;
 var score= 0;
 var my_answer= "";
 var act_answer= 0;
@@ -86,8 +94,17 @@ function submit()
 {
   if (playing)
   {
-    score += (my_answer === act_answer) ? 1 : -1;
-    generate_problem();
+    if (my_answer === act_answer) {
+      var try_penalty = tries * ANSWER_PENALTY;
+      var time_penalty = TIME_PENALTY*(PROBLEM_TIME - problem_timer.timeLeft())/1000.0;
+      score += Math.max(MIN_SCORE, MAX_SCORE + try_penalty + time_penalty);
+      generate_problem();
+    }
+    else {
+      ans_field = "A";
+      my_answer = "";
+      tries++;
+    }
   }
 }
 
@@ -122,6 +139,8 @@ function generate_problem()
     que_field.innerHTML = a + "x" + b;
     act_answer = (a * b) + "";
   }
+  tries = 0;
+  problem_timer = new Timer(PROBLEM_TIME, true);  
   my_answer = "";
   ans_field.innerHTML = "A";
 }
