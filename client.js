@@ -1,5 +1,5 @@
-var LENGTH= 15000;
-var COOLDOWN= 1000;
+var LENGTH= 16000;
+var COOLDOWN= 1500;
 var interval= null;
 var timer= null;
 var score= 0;
@@ -188,7 +188,7 @@ var isMobile = {
 
 window.onload = function()
 {
-  document.onkeyup=function(e) {
+  document.onkeydown=function(e) {
     switch(e.which) {
       case 8:
         clear_answer();
