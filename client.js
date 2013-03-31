@@ -54,7 +54,6 @@ function update()
     }
     else
     {
-      state.ans_field.innerHTML = "A: " + state.my_answer;
       state.time_field.innerHTML = ":" + Math.round(state.timer.timeLeft()/1000);
     }
   }
@@ -70,10 +69,11 @@ function clear_answer()
 
 function add_to_answer(ans)
 {
-  if (state.playing)
-  {
-    state.my_answer = Math.floor(state.my_answer*10 + ans);
-  }
+//  if (state.playing)
+//  {
+    state.my_answer++;// = Math.floor(state.my_answer*10 + ans);
+    state.ans_field.innerHTML = "A: " + state.my_answer;
+//  }
 }
 
 function submit()
