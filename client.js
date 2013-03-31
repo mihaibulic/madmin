@@ -16,7 +16,7 @@ function start_click()
 {
   if (playing)
     submit();
-  else if (timer.isDone()) 
+  else if (timer === null || timer.isDone()) 
     server.emit('start', {});
 }
 
