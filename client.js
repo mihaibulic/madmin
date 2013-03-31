@@ -5,7 +5,7 @@ var MIN_SCORE = 25;
 var PROBLEM_TIME = 3000;
 var ANSWER_PENALTY = -25;
 var TIME_PENALTY = -25;
-var WRONG_ANSWER_LENGTH = 1500;
+var ANDWER_LENGTH = 1000;
 
 // MODES
 var NONE = -1;
@@ -16,7 +16,7 @@ var COOLDOWN = 3;
 var NEXT_GAME = 4;
 
 var interval = null;
-var wrong_answer_timeout = null;
+var answer_timeout = null;
 var timer = null;
 var problem_timer = null;
 var tries =0;
@@ -127,7 +127,7 @@ function clear_answer() {
 
 function submit() {
   if (mode === PLAYING) {
-    clearTimeout(wrong_answer_timeout);
+    clearTimeout(answer_timeout);
 
     if (my_answer === act_answer) {
       var try_penalty = tries * ANSWER_PENALTY;
@@ -144,7 +144,7 @@ function submit() {
       ans_field.className = "red button";
     }
 
-    wrong_answer_timeout = setTimeout(function() { ans_field.className = "disabled button" }, WRONG_ANSWER_LENGTH);
+    answer_timeout = setTimeout(function() { ans_field.className = "disabled button" }, ANDWER_LENGTH);
   }
 }
 
