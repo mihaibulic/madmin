@@ -201,11 +201,14 @@ window.onload = function()
       break;
     }
   }
-  server = io.connect('ws://madmin.misquares.com');
-  server.on('start', start);
-  server.on('wait', wait);
-  server.on('ready', ready);
-  server.on('results', display_results);
+
+  if(server == null) {
+    server = io.connect('ws://madmin.misquares.com');
+    server.on('start', start);
+    server.on('wait', wait);
+    server.on('ready', ready);
+    server.on('results', display_results);
+  }
 };
 
 if( isMobile.any() ) {
