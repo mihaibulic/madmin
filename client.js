@@ -144,7 +144,13 @@ function submit() {
       ans_field.className = "red button";
     }
 
-    answer_timeout = setTimeout(function() { ans_field.className = "disabled button" }, ANDWER_LENGTH);
+    answer_timeout = setTimeout(reset_answer, ANDWER_LENGTH);
+  }
+}
+
+function reset_answer() {
+  if (mode === PLAYING && ans_field.className !== "hidden") {
+    ans_field.className = "disabled button"
   }
 }
 
