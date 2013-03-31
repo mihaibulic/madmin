@@ -32,8 +32,7 @@ function start()
   state.score = 0;
   state.time_field.innerHTML = ":" + Math.round(state.LENGTH/1000);
 
-  state.start_field.innerHTML = "Play!"; 
-  state.start_field.className = "disabled button";
+  state.start_field.className = "hidden";
   state.que_field.className = "green button";
   state.time_field.className = "green button";
   state.ans_field.className = "green button";
@@ -124,15 +123,14 @@ function display_results(max)
 {
   if (state.score === max)
   {
-    state.que_field.innerHTML = "YOU WON!"; 
+    state.start_field.innerHTML = "YOU WON with " + state.score + " points"; 
+    state.start_field.className = "green button";
   }
   else
   {
-    state.que_field.innerHTML = "you lost :("; 
+    state.start_field.innerHTML = "you lost with " + state.score + " points :("; 
+    state.start_field.className = "red button";
   }
-  state.ans_field.innerHTML = "score: " + state.score;
-  state.start_field.className = "green button";
-  state.start_field.innerHTML = "Start"; 
 }
 
 function end()
@@ -148,9 +146,9 @@ function end()
   state.server.emit('score', state.score);
   state.start_field.innerHTML = "Please Wait..."; 
   state.start_field.className = "yellow button";
-  state.que_field.className = "disabled button";
-  state.time_field.className = "disabled button";
-  state.ans_field.className = "disabled button";
+  state.que_field.className = "hidden";
+  state.time_field.className = "hidden";
+  state.ans_field.className = "hidden";
 }
 
 var isMobile = {

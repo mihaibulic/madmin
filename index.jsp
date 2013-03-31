@@ -10,9 +10,10 @@
     <h1>Mad Minute!</h1>  
   </div>
   <div id="main">
-    <a id="question" class="disabled button">Q: </a>
-    <a id="time" class="disabled button">:0</a>
-    <a id="answer" class="disabled button">A: </a>
+    <a id="start" class="green button" onclick="start_click()">Start</a>
+    <a id="question" class="hidden">Q: </a>
+    <a id="time" class="hidden">:0</a>
+    <a id="answer" class="hidden">A: </a>
     <br/>
     <a id="1" class="blue button" onclick="add_to_answer(1)">1</a>
     <a id="2" class="blue button" onclick="add_to_answer(2)">2</a>
@@ -29,8 +30,6 @@
     <a id="x" class="red button" onclick="clear_answer()">X</a>
     <a id="0" class="blue button" onclick="add_to_answer(0)">0</a>
     <a id="enter" class="green button" onclick="submit()">>></a>
-    <br/>
-    <a id="start" class="green button" onclick="start_click()">Start</a>
   </div>
   <div id="footer">
     <p>&copy; 2012 Mihai</p>
