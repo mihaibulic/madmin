@@ -1,4 +1,5 @@
 var LENGTH= 15000;
+var COOLDOWN= 1000;
 var interval= null;
 var timer= null;
 var score= 0;
@@ -15,7 +16,7 @@ function start_click()
 {
   if (playing)
     submit();
-  else 
+  else if (timer.isDone()) 
     server.emit('start', {});
 }
 
@@ -141,6 +142,7 @@ function display_results(max)
     }
     start_field.innerHTML += " (" + score + " pts)";
     playing = false;
+    timer = new Timer(COOLDOWN, true) 
   }
   else
     ready();
