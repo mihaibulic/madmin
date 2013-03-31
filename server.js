@@ -24,7 +24,7 @@ function add_score(id, score)
     scores_received++;
     clients[id].score = score;
   
-    console.log("scores received";
+    console.log("scores received");
     if (scores_received >= players)
     {
       console.log("computing winner");
