@@ -5,10 +5,10 @@ var score= 0;
 var my_answer= "";
 var act_answer= 0;
 var playing= false;
-var ans_field= document.getElementById("answer");
-var que_field= document.getElementById("question");
-var time_field= document.getElementById("time");
-var start_field= document.getElementById("start");
+var ans_field= null;
+var que_field= null;
+var time_field= null;
+var start_field= null;
 var server= null;
 
 function start_click()
@@ -199,6 +199,11 @@ window.onload = function()
       break;
     }
   }
+  ans_field= document.getElementById("answer");
+  que_field= document.getElementById("question");
+  time_field= document.getElementById("time");
+  start_field= document.getElementById("start");
+  
   server = io.connect('ws://madmin.misquares.com');
   server.on('start', start);
   server.on('results', display_results);
