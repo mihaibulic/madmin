@@ -12,6 +12,7 @@
   <div id="main">
     <a id="start_button" class="red button" onclick="start_click()">Go</a>
     <text id="time">:0</text>
+    <br/>
     <a id="1" class="blue button" onclick="add_to_answer(1)">1</a>
     <a id="2" class="blue button" onclick="add_to_answer(2)">2</a>
     <a id="3" class="blue button" onclick="add_to_answer(3)">3</a>
