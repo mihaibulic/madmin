@@ -17,8 +17,9 @@ h1 {
 }
 
 .button {
+    margin: 1%;
     font-size: 3em;
-    width: 10%;
+    width: 15%;
     height: 10%;
     padding-top: 1%;
     cursor: pointer;
