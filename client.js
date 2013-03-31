@@ -74,7 +74,7 @@ function clear_answer()
 
 function add_to_answer(ans)
 {
-  if (playing)
+  if (playing && my_answer.length < 3)
   {
     my_answer += "" + ans;
     ans_field.innerHTML = "A: " + my_answer;
