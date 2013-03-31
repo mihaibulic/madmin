@@ -14,13 +14,9 @@ var server= null;
 function start_click()
 {
   if (playing)
-  {
     submit();
-  }
   else 
-  {
     server.emit('start', {});
-  }
 }
 
 function start()
@@ -57,13 +53,9 @@ function update()
   if (playing)
   {
     if (timer.isDone())
-    {
       end();
-    }
     else
-    {
       time_field.innerHTML = ":" + Math.round(timer.timeLeft()/1000);
-    }
   }
 }
 
