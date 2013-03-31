@@ -19,7 +19,6 @@ function start_click()
   if (!state.playing)
   {
     state.server.emit('start', {});
-    start_button.innerHTML = "Starting";
     start_button.className = "yellow button";
   }
 }
@@ -35,7 +34,6 @@ function start()
   
   state.interval = setInterval(update, 200);
 
-  start_button.innerHTML = "Go!";
   start_button.className = "green button";
 
   state.server.emit('heart', {});
@@ -128,7 +126,6 @@ function display_results(max)
   }
   state.ans_field.innerHTML = "score: " + state.score;
 
-  start_button.innerHTML = "Start";
   start_button.className = "red button";
 }
 
