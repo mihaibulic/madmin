@@ -35,6 +35,7 @@ function add_score(id, score) {
       compute_winner(); 
     }
     else {
+      clearTimeout(timeout);
       timeout = setTimeout(compute_winner, TIMEOUT_LENGTH);
     }
   }
