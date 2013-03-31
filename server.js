@@ -1,11 +1,11 @@
 var io = require('socket.io').listen(1338);
 io.set('log level', 1);
 
-var playing= false;
 var LENGTH= 15000;
-var scores_received= 0;
-var players= 0;
+var playing= false;
 var clients= []; 
+var players= 0;
+var scores_received= 0;
 
 function start()
 {
@@ -58,6 +58,10 @@ function remove_player(id) {
   if(clients[id]) {
     players--;
     delete clients[id];
+
+    if (players === 0) {
+      playing = false;
+    }
   }
 }
 
