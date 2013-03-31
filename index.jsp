@@ -10,8 +10,8 @@
     <h1>Mad Minute!</h1>  
   </div>
   <div id="main">
-    <a id="time" class="disabled button">:0</a>
     <a id="question" class="disabled button">Q: </a>
+    <a id="time" class="disabled button">:0</a>
     <a id="answer" class="disabled button">A: </a>
     <br/>
     <a id="1" class="blue button" onclick="add_to_answer(1)">1</a>
