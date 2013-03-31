@@ -97,7 +97,7 @@ function submit()
     if (my_answer === act_answer) {
       var try_penalty = tries * ANSWER_PENALTY;
       var time_penalty = TIME_PENALTY*(PROBLEM_TIME - problem_timer.timeLeft())/1000.0;
-      score += Math.max(MIN_SCORE, MAX_SCORE + try_penalty + time_penalty);
+      score += Math.round(Math.max(MIN_SCORE, MAX_SCORE + try_penalty + time_penalty));
       generate_problem();
     }
     else {
@@ -159,7 +159,7 @@ function display_results(max)
       start_field.innerHTML = "You Lost"; 
       start_field.className = "red button";
     }
-    start_field.innerHTML += " (" + score + " pts)";
+    start_field.innerHTML += " (" + Math.round(score) + " pts)";
     playing = false;
     timer = new Timer(COOLDOWN, true) 
   }
