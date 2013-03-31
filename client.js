@@ -136,20 +136,22 @@ function display_results(max)
 
 function end()
 {
-  state.playing = false;
-  clearInterval(state.interval);
-  state.interval = null;
+  if (state.playing) {
+    state.playing = false;
+    clearInterval(state.interval);
+    state.interval = null;
     
-  state.time_field.innerHTML = ":0";
-  state.que_field.innerHTML = "please wait";
-  state.ans_field.innerHTML = "...";
+    state.time_field.innerHTML = ":0";
+    state.que_field.innerHTML = "please wait";
+    state.ans_field.innerHTML = "...";
   
-  state.server.emit('score', state.score);
-  state.start_field.innerHTML = "Please Wait..."; 
-  state.start_field.className = "yellow button";
-  state.que_field.className = "hidden";
-  state.time_field.className = "hidden";
-  state.ans_field.className = "hidden";
+    state.server.emit('score', state.score);
+    state.start_field.innerHTML = "Please Wait..."; 
+    state.start_field.className = "yellow button";
+    state.que_field.className = "hidden";
+    state.time_field.className = "hidden";
+    state.ans_field.className = "hidden";
+  }
 }
 
 var isMobile = {
@@ -199,7 +201,6 @@ window.onload = function()
   }
   state.server = io.connect('ws://madmin.misquares.com');
   state.server.on('start', start);
-  state.server.on('end', end);
   state.server.on('results', display_results);
 };
 

@@ -10,7 +10,8 @@ var state =
 
 function start()
 {
-  clients = [];
+  state.clients = [];
+  state.scores_received = 0;
   io.sockets.emit('start',{});
 }
 
@@ -39,7 +40,6 @@ function compute_winner()
   }
 
   io.sockets.emit('results', max);  
-  state.scores_received = 0;
 }
 
 io.sockets.on('connection', function(socket) 
