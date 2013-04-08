@@ -62,7 +62,7 @@ function wait() {
 function ready() {
   mode = READY;
   start_field.className = "green button";
-  start_field.innerHTML = "Starttttttttt";
+  start_field.innerHTML = "Start";
 }
 
 function update() {
