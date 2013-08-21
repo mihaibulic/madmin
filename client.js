@@ -150,7 +150,7 @@ function submit() {
 
 function reset_answer() {
   if (mode === PLAYING && ans_field.className !== "hidden") {
-    ans_field.className = "disabled button"
+    ans_field.className = "disabled button";
   }
 }
 
@@ -230,10 +230,10 @@ window.onload = function() {
         add_to_answer(e.which-48); 
       break;
     }
-  }
+  };
 
   if(server === null) {
-    server = io.connect('ws://madmin.misquares.com');
+    server = io.connect('ws://madmin.' + document.domain);
     server.on('start', start);
     server.on('wait', wait);
     server.on('ready', ready);
